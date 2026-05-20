@@ -1,0 +1,2131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aulea Viva | Calidad Académica Virtual. Consultoría especializada en LMS, formación docente y cumplimiento normativo para universidades colombianas.">
+  <meta name="keywords" content="LMS, educación virtual, calidad académica, Decreto 1330, formación docente, universidades Colombia, plataformas educativas">
+  <meta name="author" content="Aulea Viva">
+  <meta property="og:title" content="Aulea Viva | Calidad Académica Virtual">
+  <meta property="og:description" content="Donde la norma se vuelve experiencia. Consultoría premium en educación virtual universitaria.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://auleaviva.com">
+  <meta name="theme-color" content="#0A0A0A">
+  <title>Aulea Viva | Calidad Académica Virtual</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       VARIABLES Y RESET
+       ============================================ */
+    :root {
+      --color-bg: #0A0A0A;
+      --color-bg-soft: #111111;
+      --color-cream: #F5F1E8;
+      --color-cream-dark: #E8E2D0;
+      --color-white: #FFFFFF;
+      --color-text: #FFFFFF;
+      --color-text-dim: rgba(255, 255, 255, 0.6);
+      --color-text-muted: rgba(255, 255, 255, 0.4);
+      --color-accent: #7FDBDA;
+      --color-accent-dim: rgba(127, 219, 218, 0.3);
+      --color-border: rgba(255, 255, 255, 0.1);
+      --color-border-strong: rgba(255, 255, 255, 0.2);
+      --font-display: 'Antonio', 'Impact', sans-serif;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+      --shadow-glow: 0 0 40px rgba(127, 219, 218, 0.15);
+      --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.5);
+      --transition-base: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      overflow-x: hidden;
+      line-height: 1.6;
+      cursor: default;
+    }
+
+    /* Cursor estándar pero pequeño en elementos clickeables */
+    a, button, .servicio-card, input, textarea, .whatsapp-btn, .chatbot-trigger, .chatbot-option, .chatbot-close, .chatbot-send, .form-submit, .nav-mobile-btn {
+      cursor: pointer;
+    }
+
+    /* Cursor: usamos el del sistema, pequeño y visible */
+    @media (max-width: 768px) {
+      body { cursor: auto; }
+    }
+
+    /* ============================================
+       PRELOADER
+       ============================================ */
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--color-bg);
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .preloader-ascii {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      line-height: 1.1;
+      color: var(--color-accent);
+      white-space: pre;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    .preloader-logo {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 700;
+      letter-spacing: 0.5em;
+      color: var(--color-white);
+      margin-bottom: 40px;
+      -webkit-text-stroke: 1px var(--color-white);
+      color: transparent;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.3s forwards;
+    }
+
+    .preloader-percent {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 700;
+      color: var(--color-white);
+      letter-spacing: 0.05em;
+    }
+
+    .preloader-text {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-text-dim);
+      margin-top: 20px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .preloader-bar {
+      width: 200px;
+      height: 1px;
+      background: var(--color-border);
+      margin-top: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .preloader-bar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background: var(--color-accent);
+      animation: progressBar 2.5s ease forwards;
+    }
+
+    @keyframes progressBar {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* ============================================
+       CANVAS DE PARTÍCULAS (cursor constelación)
+       ============================================ */
+    .particles-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.6;
+    }
+
+    /* ============================================
+       NAVEGACIÓN
+       ============================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 24px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transition: padding 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease;
+    }
+
+    .nav.scrolled {
+      padding: 16px 48px;
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      color: var(--color-white);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo-mark {
+      width: 24px;
+      height: 24px;
+      border: 1.5px solid var(--color-accent);
+      border-radius: 50%;
+      position: relative;
+      display: inline-block;
+    }
+
+    .nav-logo-mark::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 6px;
+      height: 6px;
+      background: var(--color-accent);
+      border-radius: 50%;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-display);
+      color: var(--color-white);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 400;
+      position: relative;
+      padding: 8px 0;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '›';
+      margin-left: 8px;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      display: inline-block;
+    }
+
+    .nav-links a:hover::after {
+      opacity: 1;
+      transform: translateX(4px);
+    }
+
+    .nav-mobile-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--color-white);
+      
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+    }
+
+    .nav-mobile-btn span {
+      width: 24px;
+      height: 1.5px;
+      background: var(--color-white);
+      transition: 0.3s;
+    }
+
+    @media (max-width: 900px) {
+      .nav { padding: 20px 24px; }
+      .nav.scrolled { padding: 14px 24px; }
+      .nav-links { display: none; }
+      .nav-mobile-btn { display: flex; }
+      .nav-links.open {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--color-bg);
+        flex-direction: column;
+        padding: 40px;
+        gap: 24px;
+        border-top: 1px solid var(--color-border);
+      }
+    }
+
+    /* ============================================
+       HERO
+       ============================================ */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 0 48px;
+    }
+
+    .hero-3d {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-tagline {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.4em;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: slideUp 1s ease 0.5s forwards;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .hero-tagline::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--color-accent);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 9vw, 8rem);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--color-white);
+      margin-bottom: 40px;
+      max-width: 1000px;
+      opacity: 0;
+      animation: slideUp 1.2s ease 0.7s forwards;
+    }
+
+    .hero-title .accent {
+      color: var(--color-accent);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      font-weight: 300;
+      color: var(--color-text-dim);
+      max-width: 600px;
+      margin-bottom: 48px;
+      line-height: 1.7;
+      opacity: 0;
+      animation: slideUp 1s ease 0.9s forwards;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      opacity: 0;
+      animation: slideUp 1s ease 1.1s forwards;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 32px;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      
+      transition: all var(--transition-base);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: var(--color-white);
+      color: var(--color-bg);
+    }
+
+    .btn-primary:hover {
+      background: var(--color-accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--color-white);
+      border: 1px solid var(--color-border-strong);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+
+    .btn-arrow {
+      display: inline-block;
+      transition: transform var(--transition-base);
+    }
+
+    .btn:hover .btn-arrow {
+      transform: translateX(4px);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--color-text-dim);
+      text-transform: uppercase;
+      z-index: 3;
+      writing-mode: vertical-rl;
+      opacity: 0;
+      animation: slideUp 1s ease 1.5s forwards, bounce 2s ease 2.5s infinite;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    @media (max-width: 768px) {
+      .hero { padding: 0 24px; min-height: 600px; }
+      .hero-scroll { display: none; }
+    }
+
+    /* ============================================
+       SECCIONES BASE
+       ============================================ */
+    .section {
+      position: relative;
+      padding: 140px 48px;
+      z-index: 2;
+    }
+
+    .section-cream {
+      background: var(--color-cream);
+      color: var(--color-bg);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 80px;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      color: var(--color-accent);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--color-accent);
+    }
+
+    .section-cream .section-label {
+      color: #6b8e8d;
+    }
+
+    .section-cream .section-label::before {
+      background: #6b8e8d;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      max-width: 800px;
+    }
+
+    .section-intro {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--color-text-dim);
+      max-width: 480px;
+      font-weight: 300;
+    }
+
+    .section-cream .section-intro {
+      color: rgba(10, 10, 10, 0.7);
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: 80px 24px; }
+      .section-header { margin-bottom: 60px; }
+    }
+
+    /* ============================================
+       QUIÉNES SOMOS
+       ============================================ */
+    .quienes {
+      position: relative;
+    }
+
+    .quienes-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 40px;
+      align-items: start;
+    }
+
+    .quienes-content {
+      grid-column: 1 / 8;
+    }
+
+    .quienes-content p {
+      font-size: 1.25rem;
+      line-height: 1.7;
+      color: var(--color-text);
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+
+    .quienes-content p strong {
+      color: var(--color-accent);
+      font-weight: 500;
+    }
+
+    .quienes-stats {
+      grid-column: 9 / 13;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      border-left: 1px solid var(--color-border);
+      padding-left: 40px;
+    }
+
+    .stat-item {
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .stat-item:last-child {
+      border-bottom: none;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--color-white);
+      line-height: 1;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .stat-number .unit {
+      font-size: 1.5rem;
+      color: var(--color-accent);
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-text-dim);
+    }
+
+    @media (max-width: 900px) {
+      .quienes-content, .quienes-stats { grid-column: 1 / 13; }
+      .quienes-stats { border-left: none; padding-left: 0; border-top: 1px solid var(--color-border); padding-top: 40px; }
+    }
+
+    /* ============================================
+       FILOSOFÍA (sección crema)
+       ============================================ */
+    .filosofia {
+      background: var(--color-cream);
+      color: var(--color-bg);
+      padding: 160px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .filosofia-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .filosofia-ascii {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      line-height: 1;
+      color: rgba(10, 10, 10, 0.85);
+      white-space: pre;
+      letter-spacing: 0;
+      user-select: none;
+      animation: asciiBreathe 6s ease-in-out infinite, asciiFloat 8s ease-in-out infinite;
+      transform-origin: center center;
+      will-change: transform;
+    }
+
+    @keyframes asciiBreathe {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.02) rotate(-1deg); }
+    }
+
+    @keyframes asciiFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-4px) rotate(1deg); }
+      50% { transform: translateY(0) rotate(0deg); }
+      75% { transform: translateY(4px) rotate(-1deg); }
+    }
+
+    .filosofia-text .filosofia-quote {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.1;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      color: var(--color-bg);
+    }
+
+    .filosofia-text .filosofia-quote .italic {
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: -0.02em;
+      color: #6b8e8d;
+    }
+
+    .filosofia-text p {
+      font-size: 1.125rem;
+      line-height: 1.8;
+      color: rgba(10, 10, 10, 0.75);
+      margin-bottom: 24px;
+    }
+
+    .filosofia-signature {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(10, 10, 10, 0.15);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: rgba(10, 10, 10, 0.5);
+      letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 900px) {
+      .filosofia { padding: 100px 24px; }
+      .filosofia-grid { grid-template-columns: 1fr; gap: 60px; }
+      .filosofia-ascii { font-size: 7px; text-align: center; }
+    }
+
+    /* ============================================
+       SERVICIOS
+       ============================================ */
+    .servicios {
+      position: relative;
+    }
+
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      perspective: 1500px;
+    }
+
+    .servicio-card {
+      background: var(--color-bg-soft);
+      padding: 56px 48px;
+      position: relative;
+      overflow: hidden;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease, border-color 0.4s ease;
+      will-change: transform;
+    }
+
+    .servicio-card:hover {
+      border-color: rgba(127, 219, 218, 0.4);
+      box-shadow:
+        0 30px 60px -20px rgba(0, 0, 0, 0.8),
+        0 18px 36px -18px rgba(0, 0, 0, 0.6),
+        0 0 60px -20px rgba(127, 219, 218, 0.25);
+    }
+
+    /* Glow que sigue al cursor dentro de la card */
+    .servicio-card::after {
+      content: '';
+      position: absolute;
+      top: var(--mouse-y, 50%);
+      left: var(--mouse-x, 50%);
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(127, 219, 218, 0.15) 0%, transparent 60%);
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .servicio-card:hover::after {
+      opacity: 1;
+    }
+
+    /* Línea superior animada */
+    .servicio-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+      transform: scaleX(0);
+      transition: transform 0.6s ease;
+      z-index: 1;
+    }
+
+    .servicio-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    /* Asegurar que el contenido esté sobre el glow */
+    .servicio-card > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Elementos internos con profundidad 3D */
+    .servicio-card .servicio-numero,
+    .servicio-card .servicio-titulo,
+    .servicio-card .servicio-descripcion,
+    .servicio-card .servicio-features,
+    .servicio-card .servicio-link {
+      transform: translateZ(0);
+      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .servicio-card:hover .servicio-titulo {
+      transform: translateZ(40px);
+    }
+
+    .servicio-card:hover .servicio-numero {
+      transform: translateZ(20px);
+    }
+
+    .servicio-card:hover .servicio-descripcion {
+      transform: translateZ(25px);
+    }
+
+    .servicio-card:hover .servicio-features {
+      transform: translateZ(15px);
+    }
+
+    .servicio-card:hover .servicio-link {
+      transform: translateZ(35px);
+    }
+
+    .servicio-numero {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--color-accent);
+      letter-spacing: 0.2em;
+      margin-bottom: 32px;
+    }
+
+    .servicio-titulo {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+      color: var(--color-white);
+    }
+
+    .servicio-descripcion {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--color-text-dim);
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+
+    .servicio-features {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+
+    .servicio-features li {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      padding: 6px 0;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .servicio-features li::before {
+      content: '+';
+      color: var(--color-accent);
+      font-weight: bold;
+    }
+
+    .servicio-link {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-white);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      transition: gap var(--transition-base), color var(--transition-base);
+      align-self: flex-start;
+    }
+
+    .servicio-link:hover {
+      color: var(--color-accent);
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .servicios-grid { grid-template-columns: 1fr; }
+      .servicio-card { padding: 40px 28px; min-height: auto; }
+    }
+
+    /* ============================================
+       METODOLOGÍA
+       ============================================ */
+    .metodologia {
+      background: var(--color-bg-soft);
+    }
+
+    .metodologia-pasos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-top: 80px;
+    }
+
+    .paso {
+      position: relative;
+    }
+
+    .paso-numero {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      font-weight: 700;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--color-accent);
+      line-height: 1;
+      margin-bottom: 32px;
+      display: block;
+    }
+
+    .paso-titulo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+      color: var(--color-white);
+    }
+
+    .paso-descripcion {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--color-text-dim);
+      font-weight: 300;
+    }
+
+    @media (max-width: 900px) {
+      .metodologia-pasos { grid-template-columns: repeat(2, 1fr); gap: 48px; }
+    }
+
+    @media (max-width: 500px) {
+      .metodologia-pasos { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================
+       CONTACTO
+       ============================================ */
+    .contacto {
+      position: relative;
+    }
+
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+    }
+
+    .contacto-info h3 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 40px;
+    }
+
+    .contacto-info p {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--color-text-dim);
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+
+    .contacto-channels {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .contacto-channel {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--color-border);
+      text-decoration: none;
+      color: var(--color-white);
+      transition: color var(--transition-base);
+    }
+
+    .contacto-channel:hover {
+      color: var(--color-accent);
+    }
+
+    .contacto-channel-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contacto-channel-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .contacto-channel-info {
+      flex: 1;
+    }
+
+    .contacto-channel-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 4px;
+    }
+
+    .contacto-channel-value {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .contacto-form {
+      background: var(--color-bg-soft);
+      padding: 48px;
+      border: 1px solid var(--color-border);
+    }
+
+    .form-group {
+      margin-bottom: 28px;
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-text-dim);
+      margin-bottom: 10px;
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--color-border-strong);
+      padding: 12px 0;
+      color: var(--color-white);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: border-color var(--transition-base);
+      
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-submit {
+      width: 100%;
+      margin-top: 16px;
+      padding: 18px;
+      background: var(--color-white);
+      color: var(--color-bg);
+      border: none;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      
+      transition: all var(--transition-base);
+    }
+
+    .form-submit:hover {
+      background: var(--color-accent);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 900px) {
+      .contacto-grid { grid-template-columns: 1fr; gap: 60px; }
+      .contacto-form { padding: 32px 24px; }
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .footer {
+      background: var(--color-bg);
+      padding: 80px 48px 40px;
+      border-top: 1px solid var(--color-border);
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-brand h4 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .footer-brand p {
+      color: var(--color-text-dim);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 380px;
+      font-weight: 300;
+    }
+
+    .footer-col h5 {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      margin-bottom: 24px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      color: var(--color-text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color var(--transition-base);
+    }
+
+    .footer-col a:hover {
+      color: var(--color-accent);
+    }
+
+    .footer-ascii {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-text-muted);
+      white-space: pre;
+      margin: 40px auto;
+      text-align: center;
+      max-width: 1400px;
+      line-height: 1;
+    }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 40px;
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 768px) {
+      .footer { padding: 60px 24px 32px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-ascii { font-size: 7px; }
+    }
+
+    /* ============================================
+       WHATSAPP BUTTON 3D
+       ============================================ */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 999;
+      
+    }
+
+    .whatsapp-btn {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      box-shadow:
+        0 10px 30px rgba(37, 211, 102, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.3),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+      position: relative;
+      animation: whatsappPulse 2.5s ease-in-out infinite;
+      text-decoration: none;
+    }
+
+    .whatsapp-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid rgba(37, 211, 102, 0.5);
+      animation: whatsappRing 2.5s ease-out infinite;
+    }
+
+    .whatsapp-btn:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow:
+        0 20px 50px rgba(37, 211, 102, 0.6),
+        0 6px 16px rgba(0, 0, 0, 0.4),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4);
+    }
+
+    .whatsapp-btn svg {
+      width: 32px;
+      height: 32px;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+
+    .whatsapp-tooltip {
+      position: absolute;
+      right: 80px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--color-white);
+      color: var(--color-bg);
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .whatsapp-tooltip::after {
+      content: '';
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 6px solid transparent;
+      border-left-color: var(--color-white);
+    }
+
+    .whatsapp-float:hover .whatsapp-tooltip {
+      opacity: 1;
+      transform: translateY(-50%) translateX(-4px);
+    }
+
+    @keyframes whatsappPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes whatsappRing {
+      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
+    }
+
+    @media (max-width: 768px) {
+      .whatsapp-float { bottom: 20px; right: 20px; }
+      .whatsapp-btn { width: 56px; height: 56px; }
+      .whatsapp-btn svg { width: 28px; height: 28px; }
+    }
+
+    /* ============================================
+       CHATBOT
+       ============================================ */
+    .chatbot-trigger {
+      position: fixed;
+      bottom: 32px;
+      right: 110px;
+      z-index: 999;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-accent) 0%, #5BA8A8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      box-shadow:
+        0 10px 30px rgba(127, 219, 218, 0.3),
+        0 4px 12px rgba(0, 0, 0, 0.3),
+        inset 0 -4px 8px rgba(0, 0, 0, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3);
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+      border: none;
+    }
+
+    .chatbot-trigger:hover {
+      transform: translateY(-4px) scale(1.05);
+    }
+
+    .chatbot-trigger svg {
+      width: 30px;
+      height: 30px;
+      color: var(--color-bg);
+    }
+
+    .chatbot-notif {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 16px;
+      height: 16px;
+      background: #FF3B30;
+      border: 2px solid var(--color-bg);
+      border-radius: 50%;
+      animation: notifPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes notifPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.8; }
+    }
+
+    .chatbot-window {
+      position: fixed;
+      bottom: 110px;
+      right: 32px;
+      width: 380px;
+      max-width: calc(100vw - 64px);
+      height: 540px;
+      max-height: calc(100vh - 160px);
+      background: var(--color-bg-soft);
+      border: 1px solid var(--color-border-strong);
+      border-radius: 16px;
+      z-index: 1001;
+      display: none;
+      flex-direction: column;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      transform-origin: bottom right;
+    }
+
+    .chatbot-window.open {
+      display: flex;
+      animation: chatbotOpen 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes chatbotOpen {
+      from { transform: scale(0.8) translateY(20px); opacity: 0; }
+      to { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    .chatbot-header {
+      padding: 20px 24px;
+      background: linear-gradient(135deg, rgba(127, 219, 218, 0.1), rgba(127, 219, 218, 0.02));
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .chatbot-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-accent), #5BA8A8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--color-bg);
+      font-size: 1rem;
+      position: relative;
+    }
+
+    .chatbot-avatar::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      width: 10px;
+      height: 10px;
+      background: #25D366;
+      border: 2px solid var(--color-bg-soft);
+      border-radius: 50%;
+    }
+
+    .chatbot-header-info {
+      flex: 1;
+    }
+
+    .chatbot-header-name {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--color-white);
+    }
+
+    .chatbot-header-status {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--color-text-dim);
+      letter-spacing: 0.05em;
+    }
+
+    .chatbot-close {
+      background: none;
+      border: none;
+      color: var(--color-text-dim);
+      
+      padding: 4px;
+      font-size: 1.5rem;
+      line-height: 1;
+      transition: color var(--transition-base);
+    }
+
+    .chatbot-close:hover {
+      color: var(--color-white);
+    }
+
+    .chatbot-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-border-strong) transparent;
+    }
+
+    .chatbot-messages::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .chatbot-messages::-webkit-scrollbar-thumb {
+      background: var(--color-border-strong);
+      border-radius: 4px;
+    }
+
+    .chat-msg {
+      max-width: 85%;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      animation: msgIn 0.4s ease forwards;
+    }
+
+    @keyframes msgIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .chat-msg-bot {
+      align-self: flex-start;
+      background: rgba(127, 219, 218, 0.08);
+      border: 1px solid rgba(127, 219, 218, 0.15);
+      color: var(--color-white);
+      border-bottom-left-radius: 4px;
+    }
+
+    .chat-msg-user {
+      align-self: flex-end;
+      background: var(--color-white);
+      color: var(--color-bg);
+      border-bottom-right-radius: 4px;
+      font-weight: 500;
+    }
+
+    .chat-msg-typing {
+      align-self: flex-start;
+      padding: 16px 20px;
+      background: rgba(127, 219, 218, 0.08);
+      border-radius: 16px;
+      border-bottom-left-radius: 4px;
+      display: flex;
+      gap: 4px;
+    }
+
+    .chat-msg-typing span {
+      width: 6px;
+      height: 6px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      animation: typingDot 1.4s ease-in-out infinite;
+    }
+
+    .chat-msg-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .chat-msg-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typingDot {
+      0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+      30% { opacity: 1; transform: translateY(-4px); }
+    }
+
+    .chatbot-options {
+      padding: 0 20px 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chatbot-option {
+      padding: 8px 14px;
+      background: transparent;
+      border: 1px solid var(--color-border-strong);
+      border-radius: 100px;
+      color: var(--color-white);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      
+      transition: all var(--transition-base);
+    }
+
+    .chatbot-option:hover {
+      background: var(--color-accent);
+      color: var(--color-bg);
+      border-color: var(--color-accent);
+    }
+
+    .chatbot-input-area {
+      padding: 16px 20px;
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      gap: 8px;
+      background: var(--color-bg);
+    }
+
+    .chatbot-input {
+      flex: 1;
+      background: transparent;
+      border: 1px solid var(--color-border-strong);
+      border-radius: 100px;
+      padding: 10px 16px;
+      color: var(--color-white);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      
+    }
+
+    .chatbot-input:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    .chatbot-send {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      border: none;
+      color: var(--color-bg);
+      
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--transition-base);
+    }
+
+    .chatbot-send:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 480px) {
+      .chatbot-window {
+        right: 16px;
+        left: 16px;
+        bottom: 100px;
+        width: auto;
+        max-width: none;
+      }
+      .chatbot-trigger { right: 90px; bottom: 20px; width: 56px; height: 56px; }
+      .chatbot-trigger svg { width: 26px; height: 26px; }
+    }
+
+    /* ============================================
+       FADE-IN ON SCROLL
+       ============================================ */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- ============================================
+       PRELOADER
+       ============================================ -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-ascii" id="preloaderAscii"></div>
+    <div class="preloader-logo">AULEA VIVA</div>
+    <div class="preloader-percent" id="preloaderPercent">0%</div>
+    <div class="preloader-bar"></div>
+    <div class="preloader-text">Cargando experiencia</div>
+  </div>
+
+  <!-- ============================================
+       CANVAS DE PARTÍCULAS CONSTELACIÓN
+       ============================================ -->
+  <canvas class="particles-canvas" id="particlesCanvas"></canvas>
+
+  <!-- ============================================
+       NAVEGACIÓN
+       ============================================ -->
+  <nav class="nav" id="nav">
+    <a href="#inicio" class="nav-logo">
+      <span class="nav-logo-mark"></span>
+      AULEA VIVA
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#quienes">Quiénes Somos</a></li>
+      <li><a href="#filosofia">Filosofía</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#metodologia">Metodología</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button class="nav-mobile-btn" id="navMobileBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ============================================
+       HERO
+       ============================================ -->
+  <section class="hero" id="inicio">
+    <div class="hero-3d" id="hero3d"></div>
+    <div class="hero-content">
+      <div class="hero-tagline">Consultoría · Calidad Académica · Colombia</div>
+      <h1 class="hero-title">
+        Donde la norma<br>
+        se vuelve <span class="accent">experiencia</span>
+      </h1>
+      <p class="hero-subtitle">
+        Equipo interdisciplinar académico que acompaña a universidades y docentes en el cumplimiento integral de los estándares de educación virtual en Colombia.
+      </p>
+      <div class="hero-cta">
+        <a href="#servicios" class="btn btn-primary">
+          Explorar servicios
+          <span class="btn-arrow">›</span>
+        </a>
+        <a href="#contacto" class="btn btn-secondary">
+          Conversemos
+          <span class="btn-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-scroll">scroll ↓</div>
+  </section>
+
+  <!-- ============================================
+       QUIÉNES SOMOS
+       ============================================ -->
+  <section class="section quienes fade-in" id="quienes">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-label">01 / Quiénes Somos</div>
+          <h2 class="section-title">Un equipo construido<br>para la academia virtual</h2>
+        </div>
+        <p class="section-intro">
+          No somos una herramienta. No somos una plataforma. Somos el equipo que asegura que tu universidad cumpla con los más altos estándares de educación virtual.
+        </p>
+      </div>
+
+      <div class="quienes-grid">
+        <div class="quienes-content">
+          <p>
+            <strong>Aulea Viva</strong> es un equipo interdisciplinar dedicado a la calidad académica de la educación virtual. Reunimos visión pedagógica, conocimiento normativo y dominio técnico de plataformas LMS para acompañar a la educación superior en su transformación digital.
+          </p>
+          <p>
+            Trabajamos por la mejora profunda y la excelencia académica de los modelos de formación virtual en la universidad colombiana, y por el acompañamiento riguroso a los docentes que dan vida a esas aulas.
+          </p>
+          <p>
+            Nuestra ventaja: combinamos profundo conocimiento técnico en plataformas LMS con experiencia real en aula virtual y en los marcos normativos del Decreto 1330 de 2019.
+          </p>
+        </div>
+
+        <div class="quienes-stats">
+          <div class="stat-item">
+            <div class="stat-number">100<span class="unit">%</span></div>
+            <div class="stat-label">Atención online a nivel nacional</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">6<span class="unit">áreas</span></div>
+            <div class="stat-label">Servicios especializados</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">1330<span class="unit">·19</span></div>
+            <div class="stat-label">Cumplimiento normativo MEN</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FILOSOFÍA (sección crema)
+       ============================================ -->
+  <section class="filosofia fade-in" id="filosofia">
+    <div class="filosofia-grid">
+      <div class="filosofia-ascii" id="filosofiaAscii"></div>
+      <div class="filosofia-text">
+        <div class="section-label">02 / Filosofía</div>
+        <h2 class="filosofia-quote">
+          Detrás de cada<br>
+          plataforma virtual<br>
+          <span class="italic">hay personas</span><br>
+          aprendiendo.
+        </h2>
+        <p>
+          Lo demás es solo software. Por eso, en Aulea Viva, no diseñamos cursos: diseñamos experiencias de aprendizaje que cumplen con la norma porque están construidas con sentido humano.
+        </p>
+        <p>
+          Creemos en una educación virtual rigurosa, viva, y profundamente académica. Donde la tecnología sirve a la pedagogía, y donde cada estándar de calidad se traduce en oportunidades reales para estudiantes y docentes.
+        </p>
+        <div class="filosofia-signature">
+          > aulea_viva.manifiesto · 2026
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SERVICIOS
+       ============================================ -->
+  <section class="section servicios fade-in" id="servicios">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-label">03 / Servicios</div>
+          <h2 class="section-title">Portafolio integral<br>de consultoría</h2>
+        </div>
+        <p class="section-intro">
+          Seis líneas de servicio diseñadas para acompañar a universidades y docentes en cada etapa de su transformación virtual.
+        </p>
+      </div>
+
+      <div class="servicios-grid">
+        <article class="servicio-card">
+          <div>
+            <div class="servicio-numero">SERVICIO / 01</div>
+            <h3 class="servicio-titulo">Formación y certificación de docentes virtuales</h3>
+            <p class="servicio-descripcion">
+              Programas de capacitación con sello propio para docentes universitarios que necesitan dominar la pedagogía virtual contemporánea.
+            </p>
+            <ul class="servicio-features">
+              <li>Diplomado en docencia virtual</li>
+              <li>Talleres prácticos en LMS</li>
+              <li>Certificación verificable</li>
+            </ul>
+          </div>
+          <a href="#contacto" class="servicio-link">Solicitar información ›</a>
+        </article>
+
+        <article class="servicio-card">
+          <div>
+            <div class="servicio-numero">SERVICIO / 02</div>
+            <h3 class="servicio-titulo">Acompañamiento a vicerrectorías</h3>
+            <p class="servicio-descripcion">
+              Servicio mensual de consultoría dedicada a direcciones de educación virtual, con auditoría continua, métricas y plan de mejora.
+            </p>
+            <ul class="servicio-features">
+              <li>Retainer mensual estratégico</li>
+              <li>Métricas e indicadores de calidad</li>
+              <li>Reportes ejecutivos</li>
+            </ul>
+          </div>
+          <a href="#contacto" class="servicio-link">Solicitar información ›</a>
+        </article>
+
+        <article class="servicio-card">
+          <div>
+            <div class="servicio-numero">SERVICIO / 03</div>
+            <h3 class="servicio-titulo">Diseño instruccional de cursos virtuales</h3>
+            <p class="servicio-descripcion">
+              Construimos cursos virtuales completos siguiendo modelos pedagógicos contemporáneos y los estándares de calidad del MEN.
+            </p>
+            <ul class="servicio-features">
+              <li>Storyboards pedagógicos</li>
+              <li>Diseño UX educativo</li>
+              <li>Producción de contenidos</li>
+            </ul>
+          </div>
+          <a href="#contacto" class="servicio-link">Solicitar información ›</a>
+        </article>
+
+        <article class="servicio-card">
+          <div>
+            <div class="servicio-numero">SERVICIO / 04</div>
+            <h3 class="servicio-titulo">Registro calificado y acreditación</h3>
+            <p class="servicio-descripcion">
+              Acompañamos a universidades en procesos de registro calificado de programas virtuales y acreditación de alta calidad ante el CNA.
+            </p>
+            <ul class="servicio-features">
+              <li>Decreto 1330 de 2019</li>
+              <li>Condiciones de calidad</li>
+              <li>Lineamientos CNA</li>
+            </ul>
+          </div>
+          <a href="#contacto" class="servicio-link">Solicitar información ›</a>
+        </article>
+
+        <article class="servicio-card">
+          <div>
+            <div class="servicio-numero">SERVICIO / 05</div>
+            <h3 class="servicio-titulo">Diplomados propios "Docencia virtual de calidad"</h3>
+            <p class="servicio-descripcion">
+              Programas propios de formación continuada con metodología activa, certificación y cohortes nacionales 100% online.
+            </p>
+            <ul class="servicio-features">
+              <li>Cohortes nacionales</li>
+              <li>Metodología activa</li>
+              <li>Comunidad de práctica</li>
+            </ul>
+          </div>
+          <a href="#contacto" class="servicio-link">Solicitar información ›</a>
+        </article>
+
+        <article class="servicio-card">
+          <div>
+            <div class="servicio-numero">SERVICIO / 06</div>
+            <h3 class="servicio-titulo">Asesoría tecnológica en LMS</h3>
+            <p class="servicio-descripcion">
+              Configuración, integración, gobernanza y métricas de plataformas como Moodle, Canvas, Blackboard y Brightspace.
+            </p>
+            <ul class="servicio-features">
+              <li>Implementación técnica</li>
+              <li>Integraciones API</li>
+              <li>Dashboards de seguimiento</li>
+            </ul>
+          </div>
+          <a href="#contacto" class="servicio-link">Solicitar información ›</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       METODOLOGÍA
+       ============================================ -->
+  <section class="section metodologia fade-in" id="metodologia">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-label">04 / Metodología</div>
+          <h2 class="section-title">Cómo trabajamos<br>con tu institución</h2>
+        </div>
+        <p class="section-intro">
+          Un proceso estructurado en cuatro fases que asegura resultados medibles y sostenibles.
+        </p>
+      </div>
+
+      <div class="metodologia-pasos">
+        <div class="paso">
+          <span class="paso-numero">01</span>
+          <h3 class="paso-titulo">Diagnóstico</h3>
+          <p class="paso-descripcion">
+            Auditoría integral del estado actual de la educación virtual en la institución, con mapeo de brechas frente a la norma.
+          </p>
+        </div>
+        <div class="paso">
+          <span class="paso-numero">02</span>
+          <h3 class="paso-titulo">Plan estratégico</h3>
+          <p class="paso-descripcion">
+            Construcción de hoja de ruta personalizada con metas, indicadores, presupuesto y cronograma claro.
+          </p>
+        </div>
+        <div class="paso">
+          <span class="paso-numero">03</span>
+          <h3 class="paso-titulo">Implementación</h3>
+          <p class="paso-descripcion">
+            Ejecución acompañada con formación de equipos internos, transferencia de conocimiento y seguimiento mensual.
+          </p>
+        </div>
+        <div class="paso">
+          <span class="paso-numero">04</span>
+          <h3 class="paso-titulo">Mejora continua</h3>
+          <p class="paso-descripcion">
+            Sistema de revisión periódica con métricas que aseguran que la calidad se mantenga y evolucione en el tiempo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CONTACTO
+       ============================================ -->
+  <section class="section contacto fade-in" id="contacto">
+    <div class="container">
+      <div class="contacto-grid">
+        <div class="contacto-info">
+          <div class="section-label">05 / Contacto</div>
+          <h3>Hablemos<br>de tu institución</h3>
+          <p>
+            Cuéntanos sobre tu universidad, programa o curso. Te respondemos en menos de 24 horas con una primera consultoría sin costo.
+          </p>
+
+          <div class="contacto-channels">
+            <a href="mailto:contacto@auleaviva.com" class="contacto-channel">
+              <div class="contacto-channel-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="5" width="18" height="14" rx="2"/>
+                  <path d="M3 7l9 6 9-6"/>
+                </svg>
+              </div>
+              <div class="contacto-channel-info">
+                <div class="contacto-channel-label">Correo electrónico</div>
+                <div class="contacto-channel-value">contacto@auleaviva.com</div>
+              </div>
+            </a>
+
+            <a href="https://wa.me/573027465713?text=Hola%20Aulea%20Viva%2C%20me%20interesa%20conocer%20sus%20servicios" target="_blank" rel="noopener" class="contacto-channel">
+              <div class="contacto-channel-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.9-2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.5-.4z"/>
+                  <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.3 4.7 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3C4.4 14.9 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z"/>
+                </svg>
+              </div>
+              <div class="contacto-channel-info">
+                <div class="contacto-channel-label">WhatsApp</div>
+                <div class="contacto-channel-value">+57 302 746 5713</div>
+              </div>
+            </a>
+
+            <div class="contacto-channel" style="cursor: default;">
+              <div class="contacto-channel-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/>
+                </svg>
+              </div>
+              <div class="contacto-channel-info">
+                <div class="contacto-channel-label">Cobertura</div>
+                <div class="contacto-channel-value">Colombia · 100% online</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contacto-form" id="contactoForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label class="form-label" for="nombre">Nombre completo</label>
+            <input type="text" class="form-input" id="nombre" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="institucion">Institución</label>
+            <input type="text" class="form-input" id="institucion" name="institucion" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Correo electrónico</label>
+            <input type="email" class="form-input" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="mensaje">¿En qué podemos ayudarte?</label>
+            <textarea class="form-textarea" id="mensaje" name="mensaje" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Enviar mensaje ›</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h4>AULEA VIVA</h4>
+        <p>
+          Consultoría en calidad académica virtual. Acompañamos a universidades colombianas en el cumplimiento integral de los estándares de educación virtual.
+        </p>
+      </div>
+      <div class="footer-col">
+        <h5>Navegación</h5>
+        <ul>
+          <li><a href="#quienes">Quiénes Somos</a></li>
+          <li><a href="#filosofia">Filosofía</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#metodologia">Metodología</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contacto</h5>
+        <ul>
+          <li><a href="mailto:contacto@auleaviva.com">contacto@auleaviva.com</a></li>
+          <li><a href="https://wa.me/573027465713" target="_blank">WhatsApp +57 302 746 5713</a></li>
+          <li>Colombia · 100% online</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-ascii" id="footerAscii"></div>
+
+    <div class="footer-bottom">
+      <div>© 2026 Aulea Viva · Todos los derechos reservados</div>
+      <div>> calidad_academica.virtual</div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+       BOTÓN WHATSAPP FLOTANTE
+       ============================================ -->
+  <div class="whatsapp-float">
+    <div class="whatsapp-tooltip">Chatea con nosotros</div>
+    <a href="https://wa.me/573027465713?text=Hola%20Aulea%20Viva%2C%20me%20interesa%20conocer%20sus%20servicios" target="_blank" rel="noopener" class="whatsapp-btn" aria-label="Contactar por WhatsApp">
+      <svg viewBox="0 0 24 24" fill="white">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- ============================================
+       CHATBOT
+       ============================================ -->
+  <button class="chatbot-trigger" id="chatbotTrigger" aria-label="Abrir chat">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+    </svg>
+    <span class="chatbot-notif"></span>
+  </button>
+
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+      <div class="chatbot-avatar">AV</div>
+      <div class="chatbot-header-info">
+        <div class="chatbot-header-name">Asistente Aulea Viva</div>
+        <div class="chatbot-header-status">En línea · Responde al instante</div>
+      </div>
+      <button class="chatbot-close" id="chatbotClose" aria-label="Cerrar chat">×</button>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages"></div>
+    <div class="chatbot-options" id="chatbotOptions"></div>
+    <div class="chatbot-input-area">
+      <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Escribe tu pregunta..." autocomplete="off">
+      <button class="chatbot-send" id="chatbotSend" aria-label="Enviar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================
+       SCRIPTS
+       ============================================ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
