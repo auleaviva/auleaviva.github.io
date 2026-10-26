@@ -1,2131 +1,1137 @@
 <!DOCTYPE html>
+<!-- ================================================================
+     AULEA VIVA · auleaviva.com
+     Una marca de Grupo Empresarial Guerrero Herrera S.A.S.
+     © 2026 · Todos los derechos reservados
+================================================================= -->
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Aulea Viva | Calidad Académica Virtual. Consultoría especializada en LMS, formación docente y cumplimiento normativo para universidades colombianas.">
-  <meta name="keywords" content="LMS, educación virtual, calidad académica, Decreto 1330, formación docente, universidades Colombia, plataformas educativas">
-  <meta name="author" content="Aulea Viva">
-  <meta property="og:title" content="Aulea Viva | Calidad Académica Virtual">
-  <meta property="og:description" content="Donde la norma se vuelve experiencia. Consultoría premium en educación virtual universitaria.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://auleaviva.com">
-  <meta name="theme-color" content="#0A0A0A">
-  <title>Aulea Viva | Calidad Académica Virtual</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-  <style>
-    /* ============================================
-       VARIABLES Y RESET
-       ============================================ */
-    :root {
-      --color-bg: #0A0A0A;
-      --color-bg-soft: #111111;
-      --color-cream: #F5F1E8;
-      --color-cream-dark: #E8E2D0;
-      --color-white: #FFFFFF;
-      --color-text: #FFFFFF;
-      --color-text-dim: rgba(255, 255, 255, 0.6);
-      --color-text-muted: rgba(255, 255, 255, 0.4);
-      --color-accent: #7FDBDA;
-      --color-accent-dim: rgba(127, 219, 218, 0.3);
-      --color-border: rgba(255, 255, 255, 0.1);
-      --color-border-strong: rgba(255, 255, 255, 0.2);
-      --font-display: 'Antonio', 'Impact', sans-serif;
-      --font-body: 'Inter', -apple-system, sans-serif;
-      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
-      --shadow-glow: 0 0 40px rgba(127, 219, 218, 0.15);
-      --shadow-card: 0 20px 60px rgba(0, 0, 0, 0.5);
-      --transition-base: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    body {
-      font-family: var(--font-body);
-      background: var(--color-bg);
-      color: var(--color-text);
-      overflow-x: hidden;
-      line-height: 1.6;
-      cursor: default;
-    }
-
-    /* Cursor estándar pero pequeño en elementos clickeables */
-    a, button, .servicio-card, input, textarea, .whatsapp-btn, .chatbot-trigger, .chatbot-option, .chatbot-close, .chatbot-send, .form-submit, .nav-mobile-btn {
-      cursor: pointer;
-    }
-
-    /* Cursor: usamos el del sistema, pequeño y visible */
-    @media (max-width: 768px) {
-      body { cursor: auto; }
-    }
-
-    /* ============================================
-       PRELOADER
-       ============================================ */
-    .preloader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--color-bg);
-      z-index: 10000;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
-    }
-
-    .preloader.hidden {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    .preloader-ascii {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      line-height: 1.1;
-      color: var(--color-accent);
-      white-space: pre;
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: fadeIn 0.5s ease forwards;
-    }
-
-    .preloader-logo {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 6vw, 4rem);
-      font-weight: 700;
-      letter-spacing: 0.5em;
-      color: var(--color-white);
-      margin-bottom: 40px;
-      -webkit-text-stroke: 1px var(--color-white);
-      color: transparent;
-      opacity: 0;
-      animation: fadeIn 1s ease 0.3s forwards;
-    }
-
-    .preloader-percent {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 8vw, 5rem);
-      font-weight: 700;
-      color: var(--color-white);
-      letter-spacing: 0.05em;
-    }
-
-    .preloader-text {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--color-text-dim);
-      margin-top: 20px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
-
-    .preloader-bar {
-      width: 200px;
-      height: 1px;
-      background: var(--color-border);
-      margin-top: 30px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .preloader-bar::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 0%;
-      height: 100%;
-      background: var(--color-accent);
-      animation: progressBar 2.5s ease forwards;
-    }
-
-    @keyframes progressBar {
-      0% { width: 0%; }
-      100% { width: 100%; }
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    /* ============================================
-       CANVAS DE PARTÍCULAS (cursor constelación)
-       ============================================ */
-    .particles-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.6;
-    }
-
-    /* ============================================
-       NAVEGACIÓN
-       ============================================ */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 24px 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-      transition: padding 0.3s ease, background 0.3s ease, backdrop-filter 0.3s ease;
-    }
-
-    .nav.scrolled {
-      padding: 16px 48px;
-      background: rgba(10, 10, 10, 0.85);
-      backdrop-filter: blur(20px);
-    }
-
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: 0.3em;
-      color: var(--color-white);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .nav-logo-mark {
-      width: 24px;
-      height: 24px;
-      border: 1.5px solid var(--color-accent);
-      border-radius: 50%;
-      position: relative;
-      display: inline-block;
-    }
-
-    .nav-logo-mark::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 6px;
-      height: 6px;
-      background: var(--color-accent);
-      border-radius: 50%;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 40px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      font-family: var(--font-display);
-      color: var(--color-white);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-weight: 400;
-      position: relative;
-      padding: 8px 0;
-      transition: color 0.3s ease;
-    }
-
-    .nav-links a::after {
-      content: '›';
-      margin-left: 8px;
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      display: inline-block;
-    }
-
-    .nav-links a:hover::after {
-      opacity: 1;
-      transform: translateX(4px);
-    }
-
-    .nav-mobile-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--color-white);
-      
-      flex-direction: column;
-      gap: 5px;
-      padding: 8px;
-    }
-
-    .nav-mobile-btn span {
-      width: 24px;
-      height: 1.5px;
-      background: var(--color-white);
-      transition: 0.3s;
-    }
-
-    @media (max-width: 900px) {
-      .nav { padding: 20px 24px; }
-      .nav.scrolled { padding: 14px 24px; }
-      .nav-links { display: none; }
-      .nav-mobile-btn { display: flex; }
-      .nav-links.open {
-        display: flex;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--color-bg);
-        flex-direction: column;
-        padding: 40px;
-        gap: 24px;
-        border-top: 1px solid var(--color-border);
-      }
-    }
-
-    /* ============================================
-       HERO
-       ============================================ */
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      min-height: 700px;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      padding: 0 48px;
-    }
-
-    .hero-3d {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 3;
-      max-width: 1400px;
-      margin: 0 auto;
-      width: 100%;
-    }
-
-    .hero-tagline {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.4em;
-      color: var(--color-accent);
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      opacity: 0;
-      animation: slideUp 1s ease 0.5s forwards;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .hero-tagline::before {
-      content: '';
-      width: 40px;
-      height: 1px;
-      background: var(--color-accent);
-    }
-
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 9vw, 8rem);
-      font-weight: 700;
-      line-height: 0.95;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-      color: var(--color-white);
-      margin-bottom: 40px;
-      max-width: 1000px;
-      opacity: 0;
-      animation: slideUp 1.2s ease 0.7s forwards;
-    }
-
-    .hero-title .accent {
-      color: var(--color-accent);
-      font-style: italic;
-      font-weight: 400;
-    }
-
-    .hero-subtitle {
-      font-family: var(--font-body);
-      font-size: clamp(1rem, 1.5vw, 1.25rem);
-      font-weight: 300;
-      color: var(--color-text-dim);
-      max-width: 600px;
-      margin-bottom: 48px;
-      line-height: 1.7;
-      opacity: 0;
-      animation: slideUp 1s ease 0.9s forwards;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-      opacity: 0;
-      animation: slideUp 1s ease 1.1s forwards;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 18px 32px;
-      font-family: var(--font-display);
-      font-size: 0.85rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: none;
-      
-      transition: all var(--transition-base);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary {
-      background: var(--color-white);
-      color: var(--color-bg);
-    }
-
-    .btn-primary:hover {
-      background: var(--color-accent);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-glow);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--color-white);
-      border: 1px solid var(--color-border-strong);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--color-accent);
-      color: var(--color-accent);
-    }
-
-    .btn-arrow {
-      display: inline-block;
-      transition: transform var(--transition-base);
-    }
-
-    .btn:hover .btn-arrow {
-      transform: translateX(4px);
-    }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      color: var(--color-text-dim);
-      text-transform: uppercase;
-      z-index: 3;
-      writing-mode: vertical-rl;
-      opacity: 0;
-      animation: slideUp 1s ease 1.5s forwards, bounce 2s ease 2.5s infinite;
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(8px); }
-    }
-
-    @media (max-width: 768px) {
-      .hero { padding: 0 24px; min-height: 600px; }
-      .hero-scroll { display: none; }
-    }
-
-    /* ============================================
-       SECCIONES BASE
-       ============================================ */
-    .section {
-      position: relative;
-      padding: 140px 48px;
-      z-index: 2;
-    }
-
-    .section-cream {
-      background: var(--color-cream);
-      color: var(--color-bg);
-    }
-
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 80px;
-      gap: 40px;
-      flex-wrap: wrap;
-    }
-
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.3em;
-      color: var(--color-accent);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .section-label::before {
-      content: '';
-      width: 24px;
-      height: 1px;
-      background: var(--color-accent);
-    }
-
-    .section-cream .section-label {
-      color: #6b8e8d;
-    }
-
-    .section-cream .section-label::before {
-      background: #6b8e8d;
-    }
-
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-      max-width: 800px;
-    }
-
-    .section-intro {
-      font-size: 1.125rem;
-      line-height: 1.7;
-      color: var(--color-text-dim);
-      max-width: 480px;
-      font-weight: 300;
-    }
-
-    .section-cream .section-intro {
-      color: rgba(10, 10, 10, 0.7);
-    }
-
-    @media (max-width: 768px) {
-      .section { padding: 80px 24px; }
-      .section-header { margin-bottom: 60px; }
-    }
-
-    /* ============================================
-       QUIÉNES SOMOS
-       ============================================ */
-    .quienes {
-      position: relative;
-    }
-
-    .quienes-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 40px;
-      align-items: start;
-    }
-
-    .quienes-content {
-      grid-column: 1 / 8;
-    }
-
-    .quienes-content p {
-      font-size: 1.25rem;
-      line-height: 1.7;
-      color: var(--color-text);
-      margin-bottom: 32px;
-      font-weight: 300;
-    }
-
-    .quienes-content p strong {
-      color: var(--color-accent);
-      font-weight: 500;
-    }
-
-    .quienes-stats {
-      grid-column: 9 / 13;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 32px;
-      border-left: 1px solid var(--color-border);
-      padding-left: 40px;
-    }
-
-    .stat-item {
-      padding-bottom: 32px;
-      border-bottom: 1px solid var(--color-border);
-    }
-
-    .stat-item:last-child {
-      border-bottom: none;
-    }
-
-    .stat-number {
-      font-family: var(--font-display);
-      font-size: 3.5rem;
-      font-weight: 700;
-      color: var(--color-white);
-      line-height: 1;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-    }
-
-    .stat-number .unit {
-      font-size: 1.5rem;
-      color: var(--color-accent);
-    }
-
-    .stat-label {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--color-text-dim);
-    }
-
-    @media (max-width: 900px) {
-      .quienes-content, .quienes-stats { grid-column: 1 / 13; }
-      .quienes-stats { border-left: none; padding-left: 0; border-top: 1px solid var(--color-border); padding-top: 40px; }
-    }
-
-    /* ============================================
-       FILOSOFÍA (sección crema)
-       ============================================ */
-    .filosofia {
-      background: var(--color-cream);
-      color: var(--color-bg);
-      padding: 160px 48px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .filosofia-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .filosofia-ascii {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      line-height: 1;
-      color: rgba(10, 10, 10, 0.85);
-      white-space: pre;
-      letter-spacing: 0;
-      user-select: none;
-      animation: asciiBreathe 6s ease-in-out infinite, asciiFloat 8s ease-in-out infinite;
-      transform-origin: center center;
-      will-change: transform;
-    }
-
-    @keyframes asciiBreathe {
-      0%, 100% { transform: scale(1) rotate(0deg); }
-      50% { transform: scale(1.02) rotate(-1deg); }
-    }
-
-    @keyframes asciiFloat {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      25% { transform: translateY(-4px) rotate(1deg); }
-      50% { transform: translateY(0) rotate(0deg); }
-      75% { transform: translateY(4px) rotate(-1deg); }
-    }
-
-    .filosofia-text .filosofia-quote {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 4vw, 3.5rem);
-      line-height: 1.1;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      text-transform: uppercase;
-      margin-bottom: 40px;
-      color: var(--color-bg);
-    }
-
-    .filosofia-text .filosofia-quote .italic {
-      font-family: 'Georgia', serif;
-      font-style: italic;
-      font-weight: 400;
-      text-transform: none;
-      letter-spacing: -0.02em;
-      color: #6b8e8d;
-    }
-
-    .filosofia-text p {
-      font-size: 1.125rem;
-      line-height: 1.8;
-      color: rgba(10, 10, 10, 0.75);
-      margin-bottom: 24px;
-    }
-
-    .filosofia-signature {
-      margin-top: 48px;
-      padding-top: 32px;
-      border-top: 1px solid rgba(10, 10, 10, 0.15);
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: rgba(10, 10, 10, 0.5);
-      letter-spacing: 0.1em;
-    }
-
-    @media (max-width: 900px) {
-      .filosofia { padding: 100px 24px; }
-      .filosofia-grid { grid-template-columns: 1fr; gap: 60px; }
-      .filosofia-ascii { font-size: 7px; text-align: center; }
-    }
-
-    /* ============================================
-       SERVICIOS
-       ============================================ */
-    .servicios {
-      position: relative;
-    }
-
-    .servicios-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      perspective: 1500px;
-    }
-
-    .servicio-card {
-      background: var(--color-bg-soft);
-      padding: 56px 48px;
-      position: relative;
-      overflow: hidden;
-      min-height: 380px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      
-      border: 1px solid var(--color-border);
-      border-radius: 4px;
-      transform-style: preserve-3d;
-      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease, border-color 0.4s ease;
-      will-change: transform;
-    }
-
-    .servicio-card:hover {
-      border-color: rgba(127, 219, 218, 0.4);
-      box-shadow:
-        0 30px 60px -20px rgba(0, 0, 0, 0.8),
-        0 18px 36px -18px rgba(0, 0, 0, 0.6),
-        0 0 60px -20px rgba(127, 219, 218, 0.25);
-    }
-
-    /* Glow que sigue al cursor dentro de la card */
-    .servicio-card::after {
-      content: '';
-      position: absolute;
-      top: var(--mouse-y, 50%);
-      left: var(--mouse-x, 50%);
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(127, 219, 218, 0.15) 0%, transparent 60%);
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .servicio-card:hover::after {
-      opacity: 1;
-    }
-
-    /* Línea superior animada */
-    .servicio-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
-      transform: scaleX(0);
-      transition: transform 0.6s ease;
-      z-index: 1;
-    }
-
-    .servicio-card:hover::before {
-      transform: scaleX(1);
-    }
-
-    /* Asegurar que el contenido esté sobre el glow */
-    .servicio-card > * {
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Elementos internos con profundidad 3D */
-    .servicio-card .servicio-numero,
-    .servicio-card .servicio-titulo,
-    .servicio-card .servicio-descripcion,
-    .servicio-card .servicio-features,
-    .servicio-card .servicio-link {
-      transform: translateZ(0);
-      transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-    .servicio-card:hover .servicio-titulo {
-      transform: translateZ(40px);
-    }
-
-    .servicio-card:hover .servicio-numero {
-      transform: translateZ(20px);
-    }
-
-    .servicio-card:hover .servicio-descripcion {
-      transform: translateZ(25px);
-    }
-
-    .servicio-card:hover .servicio-features {
-      transform: translateZ(15px);
-    }
-
-    .servicio-card:hover .servicio-link {
-      transform: translateZ(35px);
-    }
-
-    .servicio-numero {
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      color: var(--color-accent);
-      letter-spacing: 0.2em;
-      margin-bottom: 32px;
-    }
-
-    .servicio-titulo {
-      font-family: var(--font-display);
-      font-size: 1.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-      margin-bottom: 24px;
-      color: var(--color-white);
-    }
-
-    .servicio-descripcion {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--color-text-dim);
-      margin-bottom: 32px;
-      font-weight: 300;
-    }
-
-    .servicio-features {
-      list-style: none;
-      margin-bottom: 32px;
-    }
-
-    .servicio-features li {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--color-text-muted);
-      padding: 6px 0;
-      letter-spacing: 0.05em;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .servicio-features li::before {
-      content: '+';
-      color: var(--color-accent);
-      font-weight: bold;
-    }
-
-    .servicio-link {
-      font-family: var(--font-display);
-      font-size: 0.85rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--color-white);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      transition: gap var(--transition-base), color var(--transition-base);
-      align-self: flex-start;
-    }
-
-    .servicio-link:hover {
-      color: var(--color-accent);
-      gap: 20px;
-    }
-
-    @media (max-width: 768px) {
-      .servicios-grid { grid-template-columns: 1fr; }
-      .servicio-card { padding: 40px 28px; min-height: auto; }
-    }
-
-    /* ============================================
-       METODOLOGÍA
-       ============================================ */
-    .metodologia {
-      background: var(--color-bg-soft);
-    }
-
-    .metodologia-pasos {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 40px;
-      margin-top: 80px;
-    }
-
-    .paso {
-      position: relative;
-    }
-
-    .paso-numero {
-      font-family: var(--font-display);
-      font-size: 4rem;
-      font-weight: 700;
-      color: transparent;
-      -webkit-text-stroke: 1px var(--color-accent);
-      line-height: 1;
-      margin-bottom: 32px;
-      display: block;
-    }
-
-    .paso-titulo {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 16px;
-      color: var(--color-white);
-    }
-
-    .paso-descripcion {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: var(--color-text-dim);
-      font-weight: 300;
-    }
-
-    @media (max-width: 900px) {
-      .metodologia-pasos { grid-template-columns: repeat(2, 1fr); gap: 48px; }
-    }
-
-    @media (max-width: 500px) {
-      .metodologia-pasos { grid-template-columns: 1fr; }
-    }
-
-    /* ============================================
-       CONTACTO
-       ============================================ */
-    .contacto {
-      position: relative;
-    }
-
-    .contacto-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-    }
-
-    .contacto-info h3 {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 700;
-      text-transform: uppercase;
-      line-height: 1;
-      letter-spacing: -0.02em;
-      margin-bottom: 40px;
-    }
-
-    .contacto-info p {
-      font-size: 1.125rem;
-      line-height: 1.7;
-      color: var(--color-text-dim);
-      margin-bottom: 48px;
-      font-weight: 300;
-    }
-
-    .contacto-channels {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .contacto-channel {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 20px 0;
-      border-bottom: 1px solid var(--color-border);
-      text-decoration: none;
-      color: var(--color-white);
-      transition: color var(--transition-base);
-    }
-
-    .contacto-channel:hover {
-      color: var(--color-accent);
-    }
-
-    .contacto-channel-icon {
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .contacto-channel-icon svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    .contacto-channel-info {
-      flex: 1;
-    }
-
-    .contacto-channel-label {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--color-text-muted);
-      margin-bottom: 4px;
-    }
-
-    .contacto-channel-value {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      letter-spacing: 0.05em;
-    }
-
-    .contacto-form {
-      background: var(--color-bg-soft);
-      padding: 48px;
-      border: 1px solid var(--color-border);
-    }
-
-    .form-group {
-      margin-bottom: 28px;
-    }
-
-    .form-label {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--color-text-dim);
-      margin-bottom: 10px;
-    }
-
-    .form-input,
-    .form-textarea {
-      width: 100%;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid var(--color-border-strong);
-      padding: 12px 0;
-      color: var(--color-white);
-      font-family: var(--font-body);
-      font-size: 1rem;
-      transition: border-color var(--transition-base);
-      
-    }
-
-    .form-input:focus,
-    .form-textarea:focus {
-      outline: none;
-      border-color: var(--color-accent);
-    }
-
-    .form-textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    .form-submit {
-      width: 100%;
-      margin-top: 16px;
-      padding: 18px;
-      background: var(--color-white);
-      color: var(--color-bg);
-      border: none;
-      font-family: var(--font-display);
-      font-size: 0.85rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      
-      transition: all var(--transition-base);
-    }
-
-    .form-submit:hover {
-      background: var(--color-accent);
-      transform: translateY(-2px);
-    }
-
-    @media (max-width: 900px) {
-      .contacto-grid { grid-template-columns: 1fr; gap: 60px; }
-      .contacto-form { padding: 32px 24px; }
-    }
-
-    /* ============================================
-       FOOTER
-       ============================================ */
-    .footer {
-      background: var(--color-bg);
-      padding: 80px 48px 40px;
-      border-top: 1px solid var(--color-border);
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 60px;
-      margin-bottom: 60px;
-      max-width: 1400px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .footer-brand h4 {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-    }
-
-    .footer-brand p {
-      color: var(--color-text-dim);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      max-width: 380px;
-      font-weight: 300;
-    }
-
-    .footer-col h5 {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--color-text-muted);
-      margin-bottom: 24px;
-    }
-
-    .footer-col ul {
-      list-style: none;
-    }
-
-    .footer-col ul li {
-      margin-bottom: 12px;
-    }
-
-    .footer-col a {
-      color: var(--color-text);
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: color var(--transition-base);
-    }
-
-    .footer-col a:hover {
-      color: var(--color-accent);
-    }
-
-    .footer-ascii {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--color-text-muted);
-      white-space: pre;
-      margin: 40px auto;
-      text-align: center;
-      max-width: 1400px;
-      line-height: 1;
-    }
-
-    .footer-bottom {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding-top: 40px;
-      border-top: 1px solid var(--color-border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--color-text-muted);
-      letter-spacing: 0.1em;
-    }
-
-    @media (max-width: 768px) {
-      .footer { padding: 60px 24px 32px; }
-      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-      .footer-ascii { font-size: 7px; }
-    }
-
-    /* ============================================
-       WHATSAPP BUTTON 3D
-       ============================================ */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 32px;
-      right: 32px;
-      z-index: 999;
-      
-    }
-
-    .whatsapp-btn {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-      box-shadow:
-        0 10px 30px rgba(37, 211, 102, 0.4),
-        0 4px 12px rgba(0, 0, 0, 0.3),
-        inset 0 -4px 8px rgba(0, 0, 0, 0.2),
-        inset 0 2px 4px rgba(255, 255, 255, 0.3);
-      transition: transform var(--transition-base), box-shadow var(--transition-base);
-      position: relative;
-      animation: whatsappPulse 2.5s ease-in-out infinite;
-      text-decoration: none;
-    }
-
-    .whatsapp-btn::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      border: 2px solid rgba(37, 211, 102, 0.5);
-      animation: whatsappRing 2.5s ease-out infinite;
-    }
-
-    .whatsapp-btn:hover {
-      transform: translateY(-4px) scale(1.05);
-      box-shadow:
-        0 20px 50px rgba(37, 211, 102, 0.6),
-        0 6px 16px rgba(0, 0, 0, 0.4),
-        inset 0 -4px 8px rgba(0, 0, 0, 0.2),
-        inset 0 2px 4px rgba(255, 255, 255, 0.4);
-    }
-
-    .whatsapp-btn svg {
-      width: 32px;
-      height: 32px;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-    }
-
-    .whatsapp-tooltip {
-      position: absolute;
-      right: 80px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: var(--color-white);
-      color: var(--color-bg);
-      padding: 10px 18px;
-      border-radius: 6px;
-      font-family: var(--font-display);
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    .whatsapp-tooltip::after {
-      content: '';
-      position: absolute;
-      left: 100%;
-      top: 50%;
-      transform: translateY(-50%);
-      border: 6px solid transparent;
-      border-left-color: var(--color-white);
-    }
-
-    .whatsapp-float:hover .whatsapp-tooltip {
-      opacity: 1;
-      transform: translateY(-50%) translateX(-4px);
-    }
-
-    @keyframes whatsappPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    @keyframes whatsappRing {
-      0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-      100% { transform: translate(-50%, -50%) scale(1.6); opacity: 0; }
-    }
-
-    @media (max-width: 768px) {
-      .whatsapp-float { bottom: 20px; right: 20px; }
-      .whatsapp-btn { width: 56px; height: 56px; }
-      .whatsapp-btn svg { width: 28px; height: 28px; }
-    }
-
-    /* ============================================
-       CHATBOT
-       ============================================ */
-    .chatbot-trigger {
-      position: fixed;
-      bottom: 32px;
-      right: 110px;
-      z-index: 999;
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--color-accent) 0%, #5BA8A8 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-      box-shadow:
-        0 10px 30px rgba(127, 219, 218, 0.3),
-        0 4px 12px rgba(0, 0, 0, 0.3),
-        inset 0 -4px 8px rgba(0, 0, 0, 0.15),
-        inset 0 2px 4px rgba(255, 255, 255, 0.3);
-      transition: transform var(--transition-base), box-shadow var(--transition-base);
-      border: none;
-    }
-
-    .chatbot-trigger:hover {
-      transform: translateY(-4px) scale(1.05);
-    }
-
-    .chatbot-trigger svg {
-      width: 30px;
-      height: 30px;
-      color: var(--color-bg);
-    }
-
-    .chatbot-notif {
-      position: absolute;
-      top: -2px;
-      right: -2px;
-      width: 16px;
-      height: 16px;
-      background: #FF3B30;
-      border: 2px solid var(--color-bg);
-      border-radius: 50%;
-      animation: notifPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes notifPulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.2); opacity: 0.8; }
-    }
-
-    .chatbot-window {
-      position: fixed;
-      bottom: 110px;
-      right: 32px;
-      width: 380px;
-      max-width: calc(100vw - 64px);
-      height: 540px;
-      max-height: calc(100vh - 160px);
-      background: var(--color-bg-soft);
-      border: 1px solid var(--color-border-strong);
-      border-radius: 16px;
-      z-index: 1001;
-      display: none;
-      flex-direction: column;
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
-      overflow: hidden;
-      transform-origin: bottom right;
-    }
-
-    .chatbot-window.open {
-      display: flex;
-      animation: chatbotOpen 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
-
-    @keyframes chatbotOpen {
-      from { transform: scale(0.8) translateY(20px); opacity: 0; }
-      to { transform: scale(1) translateY(0); opacity: 1; }
-    }
-
-    .chatbot-header {
-      padding: 20px 24px;
-      background: linear-gradient(135deg, rgba(127, 219, 218, 0.1), rgba(127, 219, 218, 0.02));
-      border-bottom: 1px solid var(--color-border);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .chatbot-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--color-accent), #5BA8A8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-display);
-      font-weight: 700;
-      color: var(--color-bg);
-      font-size: 1rem;
-      position: relative;
-    }
-
-    .chatbot-avatar::after {
-      content: '';
-      position: absolute;
-      bottom: 2px;
-      right: 2px;
-      width: 10px;
-      height: 10px;
-      background: #25D366;
-      border: 2px solid var(--color-bg-soft);
-      border-radius: 50%;
-    }
-
-    .chatbot-header-info {
-      flex: 1;
-    }
-
-    .chatbot-header-name {
-      font-family: var(--font-display);
-      font-size: 0.95rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      color: var(--color-white);
-    }
-
-    .chatbot-header-status {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      color: var(--color-text-dim);
-      letter-spacing: 0.05em;
-    }
-
-    .chatbot-close {
-      background: none;
-      border: none;
-      color: var(--color-text-dim);
-      
-      padding: 4px;
-      font-size: 1.5rem;
-      line-height: 1;
-      transition: color var(--transition-base);
-    }
-
-    .chatbot-close:hover {
-      color: var(--color-white);
-    }
-
-    .chatbot-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      scrollbar-width: thin;
-      scrollbar-color: var(--color-border-strong) transparent;
-    }
-
-    .chatbot-messages::-webkit-scrollbar {
-      width: 4px;
-    }
-
-    .chatbot-messages::-webkit-scrollbar-thumb {
-      background: var(--color-border-strong);
-      border-radius: 4px;
-    }
-
-    .chat-msg {
-      max-width: 85%;
-      padding: 12px 16px;
-      border-radius: 16px;
-      font-size: 0.9rem;
-      line-height: 1.5;
-      animation: msgIn 0.4s ease forwards;
-    }
-
-    @keyframes msgIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .chat-msg-bot {
-      align-self: flex-start;
-      background: rgba(127, 219, 218, 0.08);
-      border: 1px solid rgba(127, 219, 218, 0.15);
-      color: var(--color-white);
-      border-bottom-left-radius: 4px;
-    }
-
-    .chat-msg-user {
-      align-self: flex-end;
-      background: var(--color-white);
-      color: var(--color-bg);
-      border-bottom-right-radius: 4px;
-      font-weight: 500;
-    }
-
-    .chat-msg-typing {
-      align-self: flex-start;
-      padding: 16px 20px;
-      background: rgba(127, 219, 218, 0.08);
-      border-radius: 16px;
-      border-bottom-left-radius: 4px;
-      display: flex;
-      gap: 4px;
-    }
-
-    .chat-msg-typing span {
-      width: 6px;
-      height: 6px;
-      background: var(--color-accent);
-      border-radius: 50%;
-      animation: typingDot 1.4s ease-in-out infinite;
-    }
-
-    .chat-msg-typing span:nth-child(2) { animation-delay: 0.2s; }
-    .chat-msg-typing span:nth-child(3) { animation-delay: 0.4s; }
-
-    @keyframes typingDot {
-      0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
-      30% { opacity: 1; transform: translateY(-4px); }
-    }
-
-    .chatbot-options {
-      padding: 0 20px 12px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .chatbot-option {
-      padding: 8px 14px;
-      background: transparent;
-      border: 1px solid var(--color-border-strong);
-      border-radius: 100px;
-      color: var(--color-white);
-      font-family: var(--font-body);
-      font-size: 0.8rem;
-      
-      transition: all var(--transition-base);
-    }
-
-    .chatbot-option:hover {
-      background: var(--color-accent);
-      color: var(--color-bg);
-      border-color: var(--color-accent);
-    }
-
-    .chatbot-input-area {
-      padding: 16px 20px;
-      border-top: 1px solid var(--color-border);
-      display: flex;
-      gap: 8px;
-      background: var(--color-bg);
-    }
-
-    .chatbot-input {
-      flex: 1;
-      background: transparent;
-      border: 1px solid var(--color-border-strong);
-      border-radius: 100px;
-      padding: 10px 16px;
-      color: var(--color-white);
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      
-    }
-
-    .chatbot-input:focus {
-      outline: none;
-      border-color: var(--color-accent);
-    }
-
-    .chatbot-send {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--color-accent);
-      border: none;
-      color: var(--color-bg);
-      
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform var(--transition-base);
-    }
-
-    .chatbot-send:hover {
-      transform: scale(1.1);
-    }
-
-    @media (max-width: 480px) {
-      .chatbot-window {
-        right: 16px;
-        left: 16px;
-        bottom: 100px;
-        width: auto;
-        max-width: none;
-      }
-      .chatbot-trigger { right: 90px; bottom: 20px; width: 56px; height: 56px; }
-      .chatbot-trigger svg { width: 26px; height: 26px; }
-    }
-
-    /* ============================================
-       FADE-IN ON SCROLL
-       ============================================ */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aulea Viva — Gestión y calidad de aulas virtuales</title>
+<meta name="description" content="Acompañamos a colegios, instituciones de formación para el trabajo, academias y empresas para que sus aulas virtuales funcionen impecables: seguimiento a docentes con informes, auditorías de calidad, capacitación, docentes de apoyo, creación de contenidos y gestión integral de la plataforma.">
+<meta name="author" content="Grupo Empresarial Guerrero Herrera S.A.S.">
+<link rel="canonical" href="https://auleaviva.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aulea Viva — Tu aula virtual, lista para cualquier auditoría">
+<meta property="og:description" content="Seguimiento a docentes, auditorías de calidad, capacitación, contenidos y gestión integral de aulas virtuales. Con evidencia, no con promesas.">
+<meta property="og:url" content="https://auleaviva.com/">
+<meta name="theme-color" content="#0E5A63">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E5A63'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='34' font-weight='700' fill='%23FFFFFF' text-anchor='middle'%3EA%3C/text%3E%3Ccircle cx='47' cy='17' r='5' fill='%23E14E10'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --teal-950:#04252B; --teal-900:#083F46; --teal-800:#0B4D56; --teal-700:#0E5A63;
+  --teal-600:#12707B; --teal-500:#178793; --teal-200:#9BDCE2; --teal-100:#CFEBEE; --teal-50:#EEF8F9;
+  --ember-700:#9A330A; --ember-600:#C2410C; --ember-500:#E14E10; --ember-100:#FBE3D4;
+  --ink:#12242B; --ink-2:#44565E;
+  --paper:#FDFBF8; --sand:#F6F1EA; --line:#E0D8CC;
+  --ok:#15803D; --warn:#A16207; --bad:#B91C1C;
+  --f-head:"Fraunces","Lora",Georgia,serif;
+  --f-body:"Inter","Carlito","Liberation Sans",system-ui,sans-serif;
+  --r:14px; --r-lg:20px;
+  --sh-sm:0 1px 2px rgba(12,32,38,.05), 0 6px 16px -8px rgba(12,32,38,.14);
+  --sh-md:0 2px 6px rgba(12,32,38,.06), 0 14px 30px -14px rgba(12,32,38,.22);
+  --sh-lg:0 4px 12px rgba(12,32,38,.07), 0 28px 60px -20px rgba(12,32,38,.30);
+  --sh-xl:0 10px 24px rgba(6,22,26,.10), 0 48px 100px -28px rgba(6,22,26,.42);
+}
+
+/* ============ BASE ============ */
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{font-family:var(--f-body);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4{font-family:var(--f-head);font-weight:600;line-height:1.14;letter-spacing:-.012em;text-wrap:balance}
+a{color:var(--teal-700);text-decoration:none}
+img,svg{display:block;max-width:100%}
+[id]{scroll-margin-top:96px}
+::selection{background:var(--teal-200);color:var(--teal-950)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--ember-500);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 40px}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:fixed;top:-70px;left:16px;z-index:120;background:var(--ember-600);color:#fff;font-weight:600;padding:12px 20px;border-radius:10px;box-shadow:var(--sh-lg);transition:top .25s}
+.skip:focus{top:16px}
+.noise{position:absolute;inset:0;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22180%22 height=%22180%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%222%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22 opacity=%220.55%22/%3E%3C/svg%3E")}
+
+/* ============ EYEBROW ============ */
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ember-600);margin-bottom:16px}
+.eyebrow::before{content:"";width:28px;height:2px;border-radius:2px;background:currentColor}
+.eyebrow-light{color:var(--teal-200)}
+
+/* ============ BOTONES 3D ============ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:12px;font-family:var(--f-body);font-weight:600;font-size:15px;line-height:1.2;border:0;cursor:pointer;position:relative;transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,background-color .25s}
+.btn-lg{padding:17px 32px;font-size:16px}
+.btn-cta{color:#fff;background:linear-gradient(180deg,var(--ember-500),var(--ember-600) 55%,#B03A0A);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -2px 0 rgba(60,20,4,.28),0 10px 22px -8px rgba(194,65,12,.65),0 2px 5px rgba(30,18,8,.22)}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -2px 0 rgba(60,20,4,.28),0 18px 34px -10px rgba(194,65,12,.7),0 3px 7px rgba(30,18,8,.24)}
+.btn-cta:active{transform:translateY(1px);box-shadow:inset 0 2px 4px rgba(60,20,4,.35),0 4px 10px -4px rgba(194,65,12,.5)}
+.btn-ghost{color:#fff;background:rgba(255,255,255,.06);border:1.5px solid rgba(155,220,226,.55);backdrop-filter:blur(6px);box-shadow:inset 0 1px 0 rgba(255,255,255,.12)}
+.btn-ghost:hover{background:rgba(255,255,255,.13);transform:translateY(-2px)}
+.btn-ghost:active{transform:translateY(1px)}
+
+/* ============ HEADER ============ */
+.hdr{position:sticky;top:0;z-index:80;background:rgba(8,63,70,.85);backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%);border-bottom:1px solid rgba(255,255,255,.09);transition:box-shadow .3s}
+.hdr.scrolled{box-shadow:0 14px 40px -14px rgba(2,18,22,.6)}
+.hdr-in{display:flex;align-items:center;gap:36px;padding:13px 0}
+.logo{display:flex;align-items:center;gap:11px}
+.logo-mark{width:37px;height:37px;border-radius:11px;display:grid;place-items:center;font-family:var(--f-head);font-weight:700;font-size:19px;color:#fff;position:relative;background:radial-gradient(circle at 30% 26%,#1B98A5,var(--teal-700) 60%,var(--teal-900));box-shadow:inset 0 2px 3px rgba(255,255,255,.35),inset 0 -4px 7px rgba(3,25,29,.5),0 8px 16px -6px rgba(0,0,0,.5)}
+.logo-mark::after{content:"";position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:linear-gradient(180deg,var(--ember-500),var(--ember-700));box-shadow:0 1px 3px rgba(0,0,0,.4)}
+.logo-txt{font-family:var(--f-head);font-size:21px;font-weight:700;letter-spacing:-.02em;color:#fff}
+.logo-txt i{font-style:normal;color:var(--teal-200)}
+.nav{display:flex;gap:30px;margin-left:auto;font-size:15px}
+.nav a{color:#D8ECEE;font-weight:500;padding:6px 0;position:relative}
+.nav a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:2px;border-radius:2px;background:var(--ember-500);transition:right .3s}
+.nav a:hover::after,.nav a:focus-visible::after{right:0}
+.hdr-cta{padding:11px 20px;font-size:14px}
+.menu-btn{display:none;width:44px;height:44px;place-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:10px;cursor:pointer}
+.menu-ic{width:20px;height:2px;background:#fff;border-radius:2px;position:relative;transition:background .3s}
+.menu-ic::before,.menu-ic::after{content:"";position:absolute;left:0;width:20px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,top .3s}
+.menu-ic::before{top:-6px}
+.menu-ic::after{top:6px}
+.menu-btn[aria-expanded="true"] .menu-ic{background:transparent}
+.menu-btn[aria-expanded="true"] .menu-ic::before{top:0;transform:rotate(45deg)}
+.menu-btn[aria-expanded="true"] .menu-ic::after{top:0;transform:rotate(-45deg)}
+
+/* ============ HERO ============ */
+.hero{position:relative;overflow:hidden;color:#fff;padding:92px 0 116px;background:radial-gradient(1000px 520px at 88% -12%,rgba(23,135,147,.5),transparent 62%),radial-gradient(760px 460px at -12% 112%,rgba(194,65,12,.24),transparent 62%),linear-gradient(158deg,#0C5560 0%,var(--teal-900) 55%,var(--teal-950) 100%)}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0}
+.orb-w{position:absolute;z-index:0;pointer-events:none}
+.ow-1{right:3%;top:-150px}
+.ow-2{left:-100px;bottom:-130px}
+.orb-1{width:430px;height:430px;background:radial-gradient(circle,rgba(27,152,165,.55),transparent 65%);animation:float 11s ease-in-out infinite alternate}
+.orb-2{width:340px;height:340px;background:radial-gradient(circle,rgba(225,78,16,.30),transparent 65%);animation:float 14s ease-in-out infinite alternate-reverse}
+@keyframes float{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,-28px,0)}}
+.hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.12fr .88fr;gap:60px;align-items:center}
+.hero h1{font-size:clamp(38px,5.4vw,58px);color:#fff;margin-bottom:22px}
+.hl{font-style:italic;color:#FFC9A6;background:linear-gradient(transparent 76%,rgba(225,78,16,.45) 0)}
+.lead{font-size:19px;color:#CFE6E8;margin-bottom:34px;max-width:34em}
+.hero-btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+
+/* ============ TARJETA DE PUNTAJE (elemento firma 3D) ============ */
+.score-wrap{position:relative;perspective:1200px}
+.score-wrap::before,.score-wrap::after{content:"";position:absolute;border-radius:var(--r-lg);z-index:0}
+.score-wrap::before{inset:28px -18px -20px 30px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.24);transform:rotate(2.6deg)}
+.score-wrap::after{inset:34px 26px -26px -14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);transform:rotate(-2deg)}
+.halo{position:absolute;left:50%;top:50%;width:620px;height:620px;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;z-index:0;opacity:.55;background:conic-gradient(from 0deg,transparent,rgba(155,220,226,.55) 25%,rgba(225,78,16,.4) 55%,transparent 80%);-webkit-mask:radial-gradient(circle,transparent 63%,#000 64%,#000 66.5%,transparent 67.5%);mask:radial-gradient(circle,transparent 63%,#000 64%,#000 66.5%,transparent 67.5%);animation:spin 26s linear infinite}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.score{position:relative;z-index:1;background:linear-gradient(180deg,#FFFFFF,#F6FAFA);border-radius:var(--r-lg);padding:32px;color:var(--ink);transform-style:preserve-3d;will-change:transform;transition:transform .25s ease-out;box-shadow:inset 0 1px 0 rgba(255,255,255,.9),var(--sh-xl)}
+.score::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;mix-blend-mode:soft-light;opacity:0;transition:opacity .3s;background:radial-gradient(420px circle at var(--gx,28%) var(--gy,22%),rgba(255,255,255,.6),transparent 42%)}
+.score-wrap:hover .score::after{opacity:1}
+.score-lbl{display:flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-bottom:14px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 4px rgba(21,128,61,.15);flex:none}
+.score-num{font-family:var(--f-head);font-size:clamp(52px,6vw,68px);font-weight:700;line-height:1;letter-spacing:-.03em;background:linear-gradient(120deg,var(--teal-800) 20%,var(--teal-500));-webkit-background-clip:text;background-clip:text;color:transparent}
+.score-num em{font-style:normal;font-family:var(--f-body);font-weight:600;font-size:25px;color:var(--ink-2);-webkit-text-fill-color:var(--ink-2)}
+.meter{height:10px;border-radius:999px;background:#E9E2D8;margin:16px 0 14px;overflow:hidden;box-shadow:inset 0 2px 4px rgba(12,32,38,.16)}
+.meter i{display:block;height:100%;border-radius:inherit;width:var(--w,0);background:linear-gradient(90deg,var(--teal-600),#1FA265 70%,var(--ok));box-shadow:inset 0 1px 0 rgba(255,255,255,.5);transition:width 1.3s cubic-bezier(.2,.7,.2,1) .35s}
+.js .rv:not(.in) .meter i{width:0}
+.score-cap{font-size:14px;color:var(--ink-2);padding-bottom:18px;border-bottom:1px dashed var(--line)}
+.bars{margin-top:18px;display:flex;flex-direction:column;gap:12px}
+.bar-row{display:flex;align-items:center;gap:12px;font-size:13.5px}
+.bar-row b{font-weight:500;flex:1;color:var(--ink-2)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:4px 11px;border-radius:999px;color:#fff;white-space:nowrap;box-shadow:inset 0 1px 0 rgba(255,255,255,.32),0 3px 8px -3px rgba(12,32,38,.45)}
+.p-ok{background:linear-gradient(180deg,#1B9A4B,var(--ok))}
+.p-wa{background:linear-gradient(180deg,#BE7708,var(--warn))}
+.p-no{background:linear-gradient(180deg,#D22F2F,var(--bad))}
+
+/* ============ PRUEBA / CREDENCIALES ============ */
+.proof{background:linear-gradient(180deg,#FBF8F4,var(--sand));border-bottom:1px solid var(--line);padding:24px 0}
+.proof-in{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.proof span{display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 18px;font-size:13.5px;font-weight:500;color:var(--ink-2);box-shadow:var(--sh-sm)}
+.proof span::before{content:"";width:7px;height:7px;border-radius:2px;flex:none;transform:rotate(45deg);background:linear-gradient(135deg,var(--ember-500),var(--ember-700))}
+.proof b{color:var(--teal-800);font-weight:600}
+
+/* ============ SECCIONES ============ */
+.sec{padding:96px 0;position:relative}
+.sec-alt{background:linear-gradient(180deg,#F8F4EE,#F3EEE5);border-block:1px solid #EAE2D6}
+.sec-head{max-width:46em;margin-bottom:52px}
+.sec-head h2{font-size:clamp(30px,4vw,40px);margin-bottom:14px}
+.sec-head p{color:var(--ink-2);font-size:17.5px}
+
+/* ============ SERVICIOS · TARJETAS 3D ============ */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;perspective:1600px}
+.card{position:relative;display:flex;flex-direction:column;background:linear-gradient(180deg,#FFFFFF,#FDFAF6);border:1px solid var(--line);border-radius:var(--r-lg);padding:34px 30px 30px;box-shadow:var(--sh-md);transition:transform .45s cubic-bezier(.2,.8,.25,1),box-shadow .45s,border-color .45s}
+.card::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;border-radius:var(--r-lg) var(--r-lg) 0 0;background:linear-gradient(90deg,var(--teal-500),var(--teal-700));opacity:0;transition:opacity .45s}
+.card:hover{transform:translateY(-12px) rotateX(1.5deg);box-shadow:var(--sh-xl);border-color:#D3E4E6}
+.card:hover::before{opacity:1}
+.card-ic{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;margin-bottom:20px;color:var(--teal-700);background:linear-gradient(160deg,#F3FAFB,#E2F1F3);border:1px solid #D7EAEC;box-shadow:inset 0 -4px 8px rgba(14,90,99,.10),inset 0 2px 2px #fff,0 10px 20px -12px rgba(14,90,99,.45)}
+.card-ic svg{width:26px;height:26px}
+.card-tag{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ember-600);margin-bottom:10px}
+.card h3{font-size:23px;margin-bottom:10px}
+.card>p{font-size:15.5px;color:var(--ink-2);margin-bottom:18px}
+.price{font-family:var(--f-head);font-size:34px;font-weight:700;letter-spacing:-.02em;margin-bottom:4px;background:linear-gradient(120deg,var(--teal-800),var(--teal-500));-webkit-background-clip:text;background-clip:text;color:transparent}
+.price small{font-family:var(--f-body);font-size:14px;font-weight:500;color:var(--ink-2);-webkit-text-fill-color:var(--ink-2)}
+.card ul{list-style:none;display:flex;flex-direction:column;gap:9px;font-size:14.5px;color:var(--ink-2);margin:18px 0 26px}
+.card li{padding-left:24px;position:relative}
+.card li::before{content:"✓";position:absolute;left:0;top:0;color:var(--ok);font-weight:700}
+.card .btn{margin-top:auto}
+.cards{row-gap:44px}
+.card-feat{z-index:1;border:2px solid transparent;background:linear-gradient(180deg,#FFFFFF,#FDFAF6) padding-box,linear-gradient(160deg,var(--teal-500),var(--ember-500)) border-box;transform:translateY(-8px) scale(1.02);box-shadow:var(--sh-lg)}
+.card-feat:hover{transform:translateY(-16px) scale(1.02) rotateX(1.5deg)}
+.flag{position:absolute;top:0;left:50%;transform:translate(-50%,-50%);white-space:nowrap;color:#fff;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:7px 16px;border-radius:999px;background:linear-gradient(180deg,var(--ember-500),var(--ember-600));box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 8px 16px -5px rgba(194,65,12,.65)}
+
+/* ============ MÉTODO · MONEDAS 3D ============ */
+.steps{list-style:none;counter-reset:paso;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+.steps::before{content:"";position:absolute;top:57px;left:6%;right:6%;height:2px;z-index:0;background:repeating-linear-gradient(90deg,var(--line) 0 10px,transparent 10px 18px)}
+.step{position:relative;z-index:1;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:28px 24px;box-shadow:var(--sh-sm);transition:transform .4s cubic-bezier(.2,.8,.25,1),box-shadow .4s}
+.step:hover{transform:translateY(-8px);box-shadow:var(--sh-lg)}
+.coin{position:relative;overflow:hidden;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;margin-bottom:18px;font-family:var(--f-head);font-size:21px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.25);background:radial-gradient(circle at 32% 28%,#1B98A5,var(--teal-700) 58%,var(--teal-900));box-shadow:inset 0 2px 3px rgba(255,255,255,.4),inset 0 -5px 9px rgba(3,25,29,.45),0 12px 22px -10px rgba(8,63,70,.65)}
+.step h3{font-size:19px;margin-bottom:8px}
+.step p{font-size:14.5px;color:var(--ink-2)}
+
+/* ============ INFORME · PAPEL APILADO 3D ============ */
+.report{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.report h2{font-size:clamp(28px,3.6vw,36px);margin-bottom:14px}
+.report .rep-copy p{color:var(--ink-2);font-size:16.5px;margin-bottom:14px}
+.rep-wrap{perspective:1400px}
+.rep-box{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;box-shadow:var(--sh-xl);transform:rotateY(-3deg) rotateX(1deg);transition:transform .5s cubic-bezier(.2,.8,.25,1)}
+.rep-wrap:hover .rep-box{transform:rotateY(0) rotateX(0)}
+.rep-box::before,.rep-box::after{content:"";position:absolute;inset:0;background:#fff;border:1px solid var(--line);border-radius:inherit;z-index:-1}
+.rep-box::before{transform:rotate(-2.4deg) translate(10px,12px);opacity:.65}
+.rep-box::after{transform:rotate(1.8deg) translate(-8px,18px);opacity:.4}
+.rep-hd{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:12px}
+.rep-hd b{font-family:var(--f-head);font-size:17px}
+.chip{font-size:11.5px;font-weight:700;letter-spacing:.06em;color:var(--teal-800);background:var(--teal-50);border:1px solid var(--teal-100);padding:5px 12px;border-radius:999px;white-space:nowrap}
+.rep-row{display:flex;align-items:center;gap:12px;padding:12px 6px;border-bottom:1px solid #F0EBE4;font-size:14px;border-radius:8px;transition:background .25s}
+.rep-row:last-of-type{border-bottom:0}
+.rep-row:hover{background:#FBF8F3}
+.rep-row b{flex:1;font-weight:500}
+.rep-note{margin-top:16px;padding:13px 15px;border-radius:12px;font-size:13.5px;color:#7C3A12;background:linear-gradient(180deg,#FEF3EB,#FBE9DC);border:1px solid #F2D4BE;box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
+
+/* ============ IMÁN / CHECKLIST ============ */
+.magnet{position:relative;overflow:hidden;color:#fff;border-radius:var(--r-lg);padding:54px;display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;border:1px solid rgba(155,220,226,.18);background:radial-gradient(720px 320px at 88% -20%,rgba(225,78,16,.28),transparent 60%),radial-gradient(620px 320px at -10% 120%,rgba(23,135,147,.35),transparent 60%),linear-gradient(150deg,var(--teal-900),var(--teal-950));box-shadow:inset 0 1px 0 rgba(255,255,255,.08),var(--sh-xl)}
+.magnet h2{color:#fff;font-size:clamp(26px,3.2vw,32px);margin-bottom:12px}
+.magnet p{color:#BFDDE0;font-size:16px}
+.form{position:relative;display:flex;flex-direction:column;gap:12px}
+.form input{padding:16px 18px;border-radius:12px;border:1px solid rgba(155,220,226,.4);background:rgba(255,255,255,.97);font-family:var(--f-body);font-size:15px;color:var(--ink);box-shadow:inset 0 2px 5px rgba(4,37,43,.18)}
+.form input::placeholder{color:#6B7D84}
+.form small{color:#9FC9CD;font-size:12.5px}
+
+/* ============ CTA FINAL ============ */
+.final{position:relative;overflow:hidden;text-align:center;padding:112px 0;background:radial-gradient(640px 300px at 50% 0,rgba(23,135,147,.10),transparent 70%)}
+.final .wrap{position:relative;z-index:1}
+.final h2{font-size:clamp(32px,4.6vw,44px);margin-bottom:16px}
+.final p{color:var(--ink-2);font-size:18px;max-width:34em;margin:0 auto 30px}
+.final .final-tel{font-size:15.5px;margin:20px auto 0}
+.final-tel a{font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+/* ============ FOOTER + SELLO ============ */
+.ftr{background:linear-gradient(180deg,#0D1E24,#091419);color:#9FB3BA;font-size:14.5px;padding-top:58px}
+.ftr a{color:#C4D4D9}
+.ftr a:hover{color:#fff}
+.ftr-grid{display:grid;grid-template-columns:1.25fr .65fr 1.1fr;gap:44px;padding-bottom:46px}
+.ftr .logo-txt{font-size:19px}
+.ftr-desc{margin-top:12px;line-height:1.75;max-width:30em}
+.ftr-t{color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+.ftr-nav{display:flex;flex-direction:column;gap:10px}
+.stamp{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.seal{flex:none;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-head);font-weight:700;font-size:19px;color:#fff;border:2px solid rgba(155,220,226,.45);background:radial-gradient(circle at 32% 28%,#1B98A5,var(--teal-700) 58%,var(--teal-950));box-shadow:inset 0 2px 3px rgba(255,255,255,.35),inset 0 -5px 9px rgba(0,0,0,.5),0 10px 20px -8px rgba(0,0,0,.6)}
+.stamp b{color:#fff;font-size:14.5px}
+.stamp-note{display:block;margin-top:3px;font-size:13px;color:#9FB3BA}
+.stamp-by{display:block;margin-top:8px;font-size:12.5px;font-weight:600;color:var(--teal-200)}
+.ftr-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.1);padding:22px 0;font-size:13px;color:#7E939B}
+.ftr-bottom b{color:#C4D4D9;font-weight:600}
+.gegh{display:flex;gap:14px;align-items:flex-start;margin-top:20px;padding:16px;border-radius:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);max-width:30em}
+.gegh-mark{flex:none;width:58px;height:58px;border-radius:14px;display:grid;place-items:center;font-family:var(--f-head);font-weight:700;font-size:15px;letter-spacing:.04em;color:#fff;border:1px solid rgba(255,255,255,.25);background:radial-gradient(circle at 30% 26%,var(--ember-500),var(--ember-600) 55%,var(--ember-700));box-shadow:inset 0 2px 3px rgba(255,255,255,.35),inset 0 -5px 9px rgba(60,20,4,.45),0 10px 20px -8px rgba(0,0,0,.6)}
+.gegh b{display:block;color:#fff;font-size:14.5px;line-height:1.35}
+.gegh-k{display:block;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-200);margin-bottom:3px}
+.gegh-l{display:block;margin-top:4px;font-size:13px;color:#9FB3BA}
+
+/* ============ VIDA 3D · OBJETOS FLOTANTES ============ */
+.para{position:absolute;z-index:3;pointer-events:none;transition:transform .18s ease-out}
+.float{display:block;perspective:700px;animation:bob 7s ease-in-out infinite}
+.fl-b{animation-duration:6s;animation-delay:.8s}
+.fl-c{animation-name:bobSm;animation-duration:5.4s;animation-delay:1.6s}
+.fl-d{animation-duration:7.8s;animation-delay:.4s}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes bobSm{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes sway{0%,100%{transform:rotateY(-16deg)}50%{transform:rotateY(16deg)}}
+@keyframes spin3d{from{transform:rotateX(-18deg) rotateY(0deg)}to{transform:rotateX(-18deg) rotateY(360deg)}}
+@keyframes gemSpin{from{transform:rotateZ(45deg) rotateY(0deg)}to{transform:rotateZ(45deg) rotateY(360deg)}}
+@keyframes shine{0%,55%,100%{background-position:180% 0}25%{background-position:-80% 0}}
+.f-shadow{position:absolute;left:4px;right:4px;bottom:-20px;height:12px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(4,30,35,.38),transparent 70%);filter:blur(3px)}
+
+/* cubo del logo girando en 3D */
+.f-cube{--s:74px;position:relative;width:var(--s);height:var(--s);transform-style:preserve-3d;animation:spin3d 16s linear infinite}
+.f-cube i{position:absolute;inset:0;display:grid;place-items:center;font-style:normal;font-family:var(--f-head);font-weight:700;font-size:26px;color:#fff;border:1px solid rgba(255,255,255,.28);background:radial-gradient(circle at 32% 28%,#1B98A5,var(--teal-700) 62%,var(--teal-900));box-shadow:inset 0 2px 3px rgba(255,255,255,.3),inset 0 -5px 9px rgba(3,25,29,.45)}
+.f-cube i:nth-child(1){transform:translateZ(calc(var(--s)/2))}
+.f-cube i:nth-child(2){transform:rotateY(90deg) translateZ(calc(var(--s)/2));background:linear-gradient(rgba(3,25,29,.28),rgba(3,25,29,.28)),radial-gradient(circle at 32% 28%,#1B98A5,var(--teal-700) 62%,var(--teal-900))}
+.f-cube i:nth-child(3){transform:rotateY(180deg) translateZ(calc(var(--s)/2))}
+.f-cube i:nth-child(4){transform:rotateY(-90deg) translateZ(calc(var(--s)/2));background:linear-gradient(rgba(3,25,29,.28),rgba(3,25,29,.28)),radial-gradient(circle at 32% 28%,#1B98A5,var(--teal-700) 62%,var(--teal-900))}
+.f-cube i:nth-child(5){transform:rotateX(90deg) translateZ(calc(var(--s)/2));background:radial-gradient(circle at 32% 28%,#25A9B6,var(--teal-600) 62%,var(--teal-800))}
+.f-cube i:nth-child(6){transform:rotateX(-90deg) translateZ(calc(var(--s)/2));background:radial-gradient(circle at 40% 30%,var(--teal-800),var(--teal-950))}
+
+/* monedas 3D: sello AA y verificación */
+.f-coin{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;font-family:var(--f-head);font-weight:700;font-size:20px;color:#fff;border:2px solid rgba(155,220,226,.45);background:radial-gradient(circle at 32% 28%,#1B98A5,var(--teal-700) 58%,var(--teal-950));box-shadow:inset 0 2px 3px rgba(255,255,255,.35),inset 0 -5px 9px rgba(0,0,0,.5),0 16px 28px -10px rgba(4,30,35,.6);animation:sway 7s ease-in-out infinite}
+.f-coin-ok{font-size:26px;border-color:rgba(255,255,255,.4);background:radial-gradient(circle at 32% 28%,#23B25B,var(--ok) 58%,#0B4E27)}
+
+/* píldora y mini-informe flotantes */
+.f-pill{font-size:13px;padding:8px 16px;transform:rotate(-7deg);box-shadow:inset 0 1px 0 rgba(255,255,255,.32),0 14px 26px -8px rgba(12,32,38,.55)}
+.f-doc{position:relative;width:96px;height:68px;padding:11px 12px;background:linear-gradient(180deg,#fff,#FBF7F1);border:1px solid var(--line);border-radius:10px;transform:rotateX(10deg) rotateY(-16deg);box-shadow:inset 0 1px 0 #fff,0 18px 30px -12px rgba(6,22,26,.5)}
+.f-doc i{display:block;height:5px;border-radius:3px;background:#E4DCCF;margin-bottom:6px}
+.f-doc i:nth-child(1){width:58%}
+.f-doc i:nth-child(2){width:86%}
+.f-doc i:nth-child(3){width:44%;margin-bottom:0}
+.f-doc::after{content:"";position:absolute;top:9px;right:9px;width:12px;height:12px;border-radius:50%;background:linear-gradient(180deg,#1B9A4B,var(--ok));box-shadow:0 2px 5px rgba(21,128,61,.55)}
+
+/* posiciones alrededor de la tarjeta de puntaje */
+.p-cube{top:-58px;left:-64px}
+.p-seal{top:-26px;right:-46px}
+.p-pill{bottom:46px;left:-56px}
+.p-doc{bottom:-38px;right:-34px}
+
+/* gemas giratorias en servicios */
+.cards{position:relative}
+.sv-float{position:absolute;z-index:1;pointer-events:none}
+.sv-1{top:-16px;right:4%}
+.sv-2{bottom:-18px;left:3%}
+.f-gem{display:block;width:20px;height:20px;border-radius:6px;background:linear-gradient(135deg,var(--ember-500),var(--ember-700));box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 10px 18px -6px rgba(194,65,12,.6);animation:gemSpin 8s linear infinite}
+.f-gem-t{background:linear-gradient(135deg,#1B98A5,var(--teal-800));box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 10px 18px -6px rgba(14,90,99,.6)}
+
+/* moneda de verificación junto al informe */
+.p-check{top:-30px;right:-22px;z-index:2}
+
+/* respiración lenta de las tarjetas grandes */
+.score-wrap{animation:bobSm 8s ease-in-out 1.6s infinite}
+.rep-wrap{animation:bobSm 9s ease-in-out 1.6s infinite}
+
+/* destello periódico en las monedas del método */
+.coin::after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.55) 50%,transparent 58%);background-size:240% 100%;background-position:180% 0;animation:shine 7s ease-in-out infinite}
+.step:nth-child(2) .coin::after{animation-delay:1.1s}
+.step:nth-child(3) .coin::after{animation-delay:2.2s}
+.step:nth-child(4) .coin::after{animation-delay:3.3s}
+
+/* halo giratorio del cierre */
+.halo-final{opacity:.16;width:560px;height:560px;top:56%;background:conic-gradient(from 0deg,transparent,rgba(23,135,147,.75) 30%,transparent 65%);animation-duration:30s}
+
+@media (max-width:1080px){
+  .p-seal,.p-pill,.p-doc,.sv-float,.p-check,.f-shadow{display:none}
+  .p-cube{top:-38px;left:auto;right:-6px}
+  .f-cube{--s:54px}
+  .f-cube i{font-size:19px}
+  .score-wrap,.rep-wrap{animation:none}
+}
+
+/* ============ CANVAS · CONSTELACIÓN Y ESFERA 3D ============ */
+.net{position:absolute;inset:0;z-index:0;pointer-events:none}
+
+/* ============ BOTONES DE CONTACTO (chat y WhatsApp) ============ */
+.fabs{position:fixed;right:20px;bottom:84px;z-index:90;display:flex;flex-direction:column;gap:12px}
+.fab{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#fff;text-decoration:none;transition:transform .25s,box-shadow .25s}
+.fab svg{width:26px;height:26px}
+.fab:hover{transform:translateY(-2px)}
+.fab:active{transform:translateY(1px)}
+.fab-wa{background:radial-gradient(circle at 32% 28%,#3BE477,#25D366 55%,#128C4A);border:1px solid rgba(255,255,255,.4);box-shadow:inset 0 2px 3px rgba(255,255,255,.4),inset 0 -4px 8px rgba(4,60,30,.5),0 12px 26px -10px rgba(18,140,74,.7)}
+.fab-chat{position:relative;background:radial-gradient(circle at 32% 28%,#1B98A5,var(--teal-700) 58%,var(--teal-900));border:1px solid rgba(155,220,226,.4);box-shadow:inset 0 2px 3px rgba(255,255,255,.35),inset 0 -4px 8px rgba(3,25,29,.5),0 12px 26px -10px rgba(4,30,35,.7)}
+.fab-chat svg{width:24px;height:24px}
+.fab-chat::after{content:"";position:absolute;top:1px;right:1px;width:13px;height:13px;border-radius:50%;background:linear-gradient(180deg,var(--ember-500),var(--ember-700));border:2px solid #FDFBF8;box-shadow:0 2px 5px rgba(0,0,0,.4);animation:pulseDot 2.4s ease-in-out infinite}
+@keyframes pulseDot{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+@media (max-width:640px){
+  .fabs{right:14px;bottom:76px;gap:10px}
+  .fab{width:48px;height:48px}
+}
+
+/* ============ PORTADA DE ENTRADA (audio opcional) ============ */
+.gate{position:fixed;inset:0;z-index:200;display:none;place-items:center;padding:24px;overflow:hidden;background:radial-gradient(900px 480px at 82% -10%,rgba(23,135,147,.5),transparent 62%),radial-gradient(700px 420px at -10% 112%,rgba(194,65,12,.24),transparent 62%),linear-gradient(158deg,#0C5560,var(--teal-900) 55%,var(--teal-950));transition:opacity .7s ease,visibility .7s ease}
+.js .gate{display:grid}
+.gate.hide{opacity:0;visibility:hidden;pointer-events:none}
+.gate-halo{opacity:.3;width:780px;height:780px}
+.gate-card{position:relative;z-index:1;text-align:center;max-width:540px;width:100%;padding:48px 40px;border-radius:24px;color:#fff;background:rgba(255,255,255,.05);border:1px solid rgba(155,220,226,.28);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),var(--sh-xl)}
+.gate-card .logo-mark{width:64px;height:64px;font-size:32px;border-radius:18px;margin:0 auto 20px}
+.gate-card .eyebrow{justify-content:center;margin-bottom:14px}
+.gate-card .eyebrow::after{content:"";width:28px;height:2px;border-radius:2px;background:currentColor}
+.gate-card h2{color:#fff;font-size:clamp(26px,4vw,33px);margin-bottom:12px}
+.gate-card>p{color:#CFE6E8;font-size:15.5px;max-width:30em;margin:0 auto}
+.gate-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.gate-btns svg{width:18px;height:18px}
+.gate-note{display:block;margin-top:18px;font-size:12.5px;color:#9FC9CD}
+body.gated{overflow:hidden}
+
+/* ============ BOTÓN FLOTANTE DE SONIDO ============ */
+.snd{position:fixed;right:20px;bottom:20px;z-index:90;display:none;place-items:center;width:52px;height:52px;border-radius:50%;cursor:pointer;color:#fff;border:1px solid rgba(155,220,226,.4);background:radial-gradient(circle at 32% 28%,#1B98A5,var(--teal-700) 58%,var(--teal-900));box-shadow:inset 0 2px 3px rgba(255,255,255,.35),inset 0 -4px 8px rgba(3,25,29,.5),0 12px 26px -10px rgba(4,30,35,.7);transition:transform .25s,box-shadow .25s}
+.js .snd{display:grid}
+.snd:hover{transform:translateY(-2px)}
+.snd:active{transform:translateY(1px)}
+.snd svg{width:22px;height:22px}
+.snd .ic-on{display:none}
+.snd[aria-pressed="true"] .ic-on{display:block}
+.snd[aria-pressed="true"] .ic-off{display:none}
+@media (max-width:640px){
+  .gate-card{padding:36px 24px}
+  .gate-btns{flex-direction:column;align-items:stretch}
+  .snd{right:14px;bottom:14px}
+}
+
+/* ============ REVEAL AL SCROLL ============ */
+.rv{transition:opacity .8s cubic-bezier(.2,.7,.3,1) var(--d,0s),transform .8s cubic-bezier(.2,.7,.3,1) var(--d,0s)}
+.js .rv{opacity:0;transform:translateY(26px)}
+.js .rv.in{opacity:1;transform:none}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1080px){
+  .hero-grid{grid-template-columns:1fr;gap:60px}
+  .score-wrap{max-width:500px;width:100%;margin:0 auto}
+  .halo{display:none}
+  .cards{grid-template-columns:1fr;max-width:560px;margin:0 auto}
+  .card-feat{transform:none}
+  .card-feat:hover{transform:translateY(-12px)}
+  .steps{grid-template-columns:1fr 1fr}
+  .steps::before{display:none}
+  .report{grid-template-columns:1fr;gap:52px}
+  .magnet{grid-template-columns:1fr;gap:30px;padding:44px 36px}
+  .ftr-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:920px){
+  .menu-btn{display:grid}
+  .hdr-cta{margin-left:auto}
+  .nav{position:absolute;top:100%;left:0;right:0;display:none;flex-direction:column;gap:2px;margin:0;padding:14px 40px 24px;background:rgba(8,63,70,.98);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.1);box-shadow:0 34px 60px -20px rgba(0,0,0,.6)}
+  .nav.open{display:flex}
+  .nav a{padding:13px 0;font-size:16px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .nav a:last-child{border-bottom:0}
+}
+@media (max-width:640px){
+  .wrap{padding:0 22px}
+  .sec{padding:72px 0}
+  .hero{padding:64px 0 88px}
+  .hero-btns{flex-direction:column;align-items:stretch}
+  .steps{grid-template-columns:1fr}
+  .score{padding:26px}
+  .magnet{padding:36px 24px}
+  .proof span{font-size:12.5px;padding:8px 14px}
+  .final{padding:84px 0}
+  .ftr-grid{grid-template-columns:1fr;gap:34px}
+  .nav{padding:14px 22px 24px}
+}
+@media (max-width:480px){
+  .hdr-cta{display:none}
+}
+
+/* ============ MOVIMIENTO REDUCIDO ============ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv{opacity:1;transform:none}
+  .js .rv:not(.in) .meter i{width:var(--w,0)}
+}
+</style>
 </head>
 <body>
-  <!-- ============================================
-       PRELOADER
-       ============================================ -->
-  <div class="preloader" id="preloader">
-    <div class="preloader-ascii" id="preloaderAscii"></div>
-    <div class="preloader-logo">AULEA VIVA</div>
-    <div class="preloader-percent" id="preloaderPercent">0%</div>
-    <div class="preloader-bar"></div>
-    <div class="preloader-text">Cargando experiencia</div>
-  </div>
 
-  <!-- ============================================
-       CANVAS DE PARTÍCULAS CONSTELACIÓN
-       ============================================ -->
-  <canvas class="particles-canvas" id="particlesCanvas"></canvas>
+<a class="skip" href="#main">Saltar al contenido</a>
 
-  <!-- ============================================
-       NAVEGACIÓN
-       ============================================ -->
-  <nav class="nav" id="nav">
-    <a href="#inicio" class="nav-logo">
-      <span class="nav-logo-mark"></span>
-      AULEA VIVA
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#quienes">Quiénes Somos</a></li>
-      <li><a href="#filosofia">Filosofía</a></li>
-      <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#metodologia">Metodología</a></li>
-      <li><a href="#contacto">Contacto</a></li>
-    </ul>
-    <button class="nav-mobile-btn" id="navMobileBtn">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </nav>
-
-  <!-- ============================================
-       HERO
-       ============================================ -->
-  <section class="hero" id="inicio">
-    <div class="hero-3d" id="hero3d"></div>
-    <div class="hero-content">
-      <div class="hero-tagline">Consultoría · Calidad Académica · Colombia</div>
-      <h1 class="hero-title">
-        Donde la norma<br>
-        se vuelve <span class="accent">experiencia</span>
-      </h1>
-      <p class="hero-subtitle">
-        Equipo interdisciplinar académico que acompaña a universidades y docentes en el cumplimiento integral de los estándares de educación virtual en Colombia.
-      </p>
-      <div class="hero-cta">
-        <a href="#servicios" class="btn btn-primary">
-          Explorar servicios
-          <span class="btn-arrow">›</span>
-        </a>
-        <a href="#contacto" class="btn btn-secondary">
-          Conversemos
-          <span class="btn-arrow">↗</span>
-        </a>
-      </div>
-    </div>
-    <div class="hero-scroll">scroll ↓</div>
-  </section>
-
-  <!-- ============================================
-       QUIÉNES SOMOS
-       ============================================ -->
-  <section class="section quienes fade-in" id="quienes">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <div class="section-label">01 / Quiénes Somos</div>
-          <h2 class="section-title">Un equipo construido<br>para la academia virtual</h2>
-        </div>
-        <p class="section-intro">
-          No somos una herramienta. No somos una plataforma. Somos el equipo que asegura que tu universidad cumpla con los más altos estándares de educación virtual.
-        </p>
-      </div>
-
-      <div class="quienes-grid">
-        <div class="quienes-content">
-          <p>
-            <strong>Aulea Viva</strong> es un equipo interdisciplinar dedicado a la calidad académica de la educación virtual. Reunimos visión pedagógica, conocimiento normativo y dominio técnico de plataformas LMS para acompañar a la educación superior en su transformación digital.
-          </p>
-          <p>
-            Trabajamos por la mejora profunda y la excelencia académica de los modelos de formación virtual en la universidad colombiana, y por el acompañamiento riguroso a los docentes que dan vida a esas aulas.
-          </p>
-          <p>
-            Nuestra ventaja: combinamos profundo conocimiento técnico en plataformas LMS con experiencia real en aula virtual y en los marcos normativos del Decreto 1330 de 2019.
-          </p>
-        </div>
-
-        <div class="quienes-stats">
-          <div class="stat-item">
-            <div class="stat-number">100<span class="unit">%</span></div>
-            <div class="stat-label">Atención online a nivel nacional</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">6<span class="unit">áreas</span></div>
-            <div class="stat-label">Servicios especializados</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">1330<span class="unit">·19</span></div>
-            <div class="stat-label">Cumplimiento normativo MEN</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       FILOSOFÍA (sección crema)
-       ============================================ -->
-  <section class="filosofia fade-in" id="filosofia">
-    <div class="filosofia-grid">
-      <div class="filosofia-ascii" id="filosofiaAscii"></div>
-      <div class="filosofia-text">
-        <div class="section-label">02 / Filosofía</div>
-        <h2 class="filosofia-quote">
-          Detrás de cada<br>
-          plataforma virtual<br>
-          <span class="italic">hay personas</span><br>
-          aprendiendo.
-        </h2>
-        <p>
-          Lo demás es solo software. Por eso, en Aulea Viva, no diseñamos cursos: diseñamos experiencias de aprendizaje que cumplen con la norma porque están construidas con sentido humano.
-        </p>
-        <p>
-          Creemos en una educación virtual rigurosa, viva, y profundamente académica. Donde la tecnología sirve a la pedagogía, y donde cada estándar de calidad se traduce en oportunidades reales para estudiantes y docentes.
-        </p>
-        <div class="filosofia-signature">
-          > aulea_viva.manifiesto · 2026
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       SERVICIOS
-       ============================================ -->
-  <section class="section servicios fade-in" id="servicios">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <div class="section-label">03 / Servicios</div>
-          <h2 class="section-title">Portafolio integral<br>de consultoría</h2>
-        </div>
-        <p class="section-intro">
-          Seis líneas de servicio diseñadas para acompañar a universidades y docentes en cada etapa de su transformación virtual.
-        </p>
-      </div>
-
-      <div class="servicios-grid">
-        <article class="servicio-card">
-          <div>
-            <div class="servicio-numero">SERVICIO / 01</div>
-            <h3 class="servicio-titulo">Formación y certificación de docentes virtuales</h3>
-            <p class="servicio-descripcion">
-              Programas de capacitación con sello propio para docentes universitarios que necesitan dominar la pedagogía virtual contemporánea.
-            </p>
-            <ul class="servicio-features">
-              <li>Diplomado en docencia virtual</li>
-              <li>Talleres prácticos en LMS</li>
-              <li>Certificación verificable</li>
-            </ul>
-          </div>
-          <a href="#contacto" class="servicio-link">Solicitar información ›</a>
-        </article>
-
-        <article class="servicio-card">
-          <div>
-            <div class="servicio-numero">SERVICIO / 02</div>
-            <h3 class="servicio-titulo">Acompañamiento a vicerrectorías</h3>
-            <p class="servicio-descripcion">
-              Servicio mensual de consultoría dedicada a direcciones de educación virtual, con auditoría continua, métricas y plan de mejora.
-            </p>
-            <ul class="servicio-features">
-              <li>Retainer mensual estratégico</li>
-              <li>Métricas e indicadores de calidad</li>
-              <li>Reportes ejecutivos</li>
-            </ul>
-          </div>
-          <a href="#contacto" class="servicio-link">Solicitar información ›</a>
-        </article>
-
-        <article class="servicio-card">
-          <div>
-            <div class="servicio-numero">SERVICIO / 03</div>
-            <h3 class="servicio-titulo">Diseño instruccional de cursos virtuales</h3>
-            <p class="servicio-descripcion">
-              Construimos cursos virtuales completos siguiendo modelos pedagógicos contemporáneos y los estándares de calidad del MEN.
-            </p>
-            <ul class="servicio-features">
-              <li>Storyboards pedagógicos</li>
-              <li>Diseño UX educativo</li>
-              <li>Producción de contenidos</li>
-            </ul>
-          </div>
-          <a href="#contacto" class="servicio-link">Solicitar información ›</a>
-        </article>
-
-        <article class="servicio-card">
-          <div>
-            <div class="servicio-numero">SERVICIO / 04</div>
-            <h3 class="servicio-titulo">Registro calificado y acreditación</h3>
-            <p class="servicio-descripcion">
-              Acompañamos a universidades en procesos de registro calificado de programas virtuales y acreditación de alta calidad ante el CNA.
-            </p>
-            <ul class="servicio-features">
-              <li>Decreto 1330 de 2019</li>
-              <li>Condiciones de calidad</li>
-              <li>Lineamientos CNA</li>
-            </ul>
-          </div>
-          <a href="#contacto" class="servicio-link">Solicitar información ›</a>
-        </article>
-
-        <article class="servicio-card">
-          <div>
-            <div class="servicio-numero">SERVICIO / 05</div>
-            <h3 class="servicio-titulo">Diplomados propios "Docencia virtual de calidad"</h3>
-            <p class="servicio-descripcion">
-              Programas propios de formación continuada con metodología activa, certificación y cohortes nacionales 100% online.
-            </p>
-            <ul class="servicio-features">
-              <li>Cohortes nacionales</li>
-              <li>Metodología activa</li>
-              <li>Comunidad de práctica</li>
-            </ul>
-          </div>
-          <a href="#contacto" class="servicio-link">Solicitar información ›</a>
-        </article>
-
-        <article class="servicio-card">
-          <div>
-            <div class="servicio-numero">SERVICIO / 06</div>
-            <h3 class="servicio-titulo">Asesoría tecnológica en LMS</h3>
-            <p class="servicio-descripcion">
-              Configuración, integración, gobernanza y métricas de plataformas como Moodle, Canvas, Blackboard y Brightspace.
-            </p>
-            <ul class="servicio-features">
-              <li>Implementación técnica</li>
-              <li>Integraciones API</li>
-              <li>Dashboards de seguimiento</li>
-            </ul>
-          </div>
-          <a href="#contacto" class="servicio-link">Solicitar información ›</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       METODOLOGÍA
-       ============================================ -->
-  <section class="section metodologia fade-in" id="metodologia">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <div class="section-label">04 / Metodología</div>
-          <h2 class="section-title">Cómo trabajamos<br>con tu institución</h2>
-        </div>
-        <p class="section-intro">
-          Un proceso estructurado en cuatro fases que asegura resultados medibles y sostenibles.
-        </p>
-      </div>
-
-      <div class="metodologia-pasos">
-        <div class="paso">
-          <span class="paso-numero">01</span>
-          <h3 class="paso-titulo">Diagnóstico</h3>
-          <p class="paso-descripcion">
-            Auditoría integral del estado actual de la educación virtual en la institución, con mapeo de brechas frente a la norma.
-          </p>
-        </div>
-        <div class="paso">
-          <span class="paso-numero">02</span>
-          <h3 class="paso-titulo">Plan estratégico</h3>
-          <p class="paso-descripcion">
-            Construcción de hoja de ruta personalizada con metas, indicadores, presupuesto y cronograma claro.
-          </p>
-        </div>
-        <div class="paso">
-          <span class="paso-numero">03</span>
-          <h3 class="paso-titulo">Implementación</h3>
-          <p class="paso-descripcion">
-            Ejecución acompañada con formación de equipos internos, transferencia de conocimiento y seguimiento mensual.
-          </p>
-        </div>
-        <div class="paso">
-          <span class="paso-numero">04</span>
-          <h3 class="paso-titulo">Mejora continua</h3>
-          <p class="paso-descripcion">
-            Sistema de revisión periódica con métricas que aseguran que la calidad se mantenga y evolucione en el tiempo.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       CONTACTO
-       ============================================ -->
-  <section class="section contacto fade-in" id="contacto">
-    <div class="container">
-      <div class="contacto-grid">
-        <div class="contacto-info">
-          <div class="section-label">05 / Contacto</div>
-          <h3>Hablemos<br>de tu institución</h3>
-          <p>
-            Cuéntanos sobre tu universidad, programa o curso. Te respondemos en menos de 24 horas con una primera consultoría sin costo.
-          </p>
-
-          <div class="contacto-channels">
-            <a href="mailto:contacto@auleaviva.com" class="contacto-channel">
-              <div class="contacto-channel-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <rect x="3" y="5" width="18" height="14" rx="2"/>
-                  <path d="M3 7l9 6 9-6"/>
-                </svg>
-              </div>
-              <div class="contacto-channel-info">
-                <div class="contacto-channel-label">Correo electrónico</div>
-                <div class="contacto-channel-value">contacto@auleaviva.com</div>
-              </div>
-            </a>
-
-            <a href="https://wa.me/573027465713?text=Hola%20Aulea%20Viva%2C%20me%20interesa%20conocer%20sus%20servicios" target="_blank" rel="noopener" class="contacto-channel">
-              <div class="contacto-channel-icon">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.6-1.5-.9-2-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.5-.4z"/>
-                  <path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.4 1.3 4.9L2 22l5.3-1.3c1.4.8 3 1.3 4.7 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.5 0-2.9-.4-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3C4.4 14.9 4 13.5 4 12c0-4.4 3.6-8 8-8s8 3.6 8 8-3.6 8-8 8z"/>
-                </svg>
-              </div>
-              <div class="contacto-channel-info">
-                <div class="contacto-channel-label">WhatsApp</div>
-                <div class="contacto-channel-value">+57 302 746 5713</div>
-              </div>
-            </a>
-
-            <div class="contacto-channel" style="cursor: default;">
-              <div class="contacto-channel-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <circle cx="12" cy="12" r="9"/>
-                  <path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/>
-                </svg>
-              </div>
-              <div class="contacto-channel-info">
-                <div class="contacto-channel-label">Cobertura</div>
-                <div class="contacto-channel-value">Colombia · 100% online</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <form class="contacto-form" id="contactoForm" onsubmit="handleFormSubmit(event)">
-          <div class="form-group">
-            <label class="form-label" for="nombre">Nombre completo</label>
-            <input type="text" class="form-input" id="nombre" name="nombre" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="institucion">Institución</label>
-            <input type="text" class="form-input" id="institucion" name="institucion" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="email">Correo electrónico</label>
-            <input type="email" class="form-input" id="email" name="email" required>
-          </div>
-          <div class="form-group">
-            <label class="form-label" for="mensaje">¿En qué podemos ayudarte?</label>
-            <textarea class="form-textarea" id="mensaje" name="mensaje" rows="4" required></textarea>
-          </div>
-          <button type="submit" class="form-submit">Enviar mensaje ›</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
-       FOOTER
-       ============================================ -->
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <h4>AULEA VIVA</h4>
-        <p>
-          Consultoría en calidad académica virtual. Acompañamos a universidades colombianas en el cumplimiento integral de los estándares de educación virtual.
-        </p>
-      </div>
-      <div class="footer-col">
-        <h5>Navegación</h5>
-        <ul>
-          <li><a href="#quienes">Quiénes Somos</a></li>
-          <li><a href="#filosofia">Filosofía</a></li>
-          <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#metodologia">Metodología</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Contacto</h5>
-        <ul>
-          <li><a href="mailto:contacto@auleaviva.com">contacto@auleaviva.com</a></li>
-          <li><a href="https://wa.me/573027465713" target="_blank">WhatsApp +57 302 746 5713</a></li>
-          <li>Colombia · 100% online</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer-ascii" id="footerAscii"></div>
-
-    <div class="footer-bottom">
-      <div>© 2026 Aulea Viva · Todos los derechos reservados</div>
-      <div>> calidad_academica.virtual</div>
-    </div>
-  </footer>
-
-  <!-- ============================================
-       BOTÓN WHATSAPP FLOTANTE
-       ============================================ -->
-  <div class="whatsapp-float">
-    <div class="whatsapp-tooltip">Chatea con nosotros</div>
-    <a href="https://wa.me/573027465713?text=Hola%20Aulea%20Viva%2C%20me%20interesa%20conocer%20sus%20servicios" target="_blank" rel="noopener" class="whatsapp-btn" aria-label="Contactar por WhatsApp">
-      <svg viewBox="0 0 24 24" fill="white">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-    </a>
-  </div>
-
-  <!-- ============================================
-       CHATBOT
-       ============================================ -->
-  <button class="chatbot-trigger" id="chatbotTrigger" aria-label="Abrir chat">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
-    </svg>
-    <span class="chatbot-notif"></span>
-  </button>
-
-  <div class="chatbot-window" id="chatbotWindow">
-    <div class="chatbot-header">
-      <div class="chatbot-avatar">AV</div>
-      <div class="chatbot-header-info">
-        <div class="chatbot-header-name">Asistente Aulea Viva</div>
-        <div class="chatbot-header-status">En línea · Responde al instante</div>
-      </div>
-      <button class="chatbot-close" id="chatbotClose" aria-label="Cerrar chat">×</button>
-    </div>
-    <div class="chatbot-messages" id="chatbotMessages"></div>
-    <div class="chatbot-options" id="chatbotOptions"></div>
-    <div class="chatbot-input-area">
-      <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Escribe tu pregunta..." autocomplete="off">
-      <button class="chatbot-send" id="chatbotSend" aria-label="Enviar">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="22" y1="2" x2="11" y2="13"/>
-          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-        </svg>
+<!-- ============ PORTADA DE ENTRADA ============ -->
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-t" aria-describedby="gate-d">
+  <div class="noise" aria-hidden="true"></div>
+  <div class="halo gate-halo" aria-hidden="true"></div>
+  <div class="gate-card">
+    <span class="logo-mark" aria-hidden="true">A</span>
+    <p class="eyebrow eyebrow-light">Aulea Viva</p>
+    <h2 id="gate-t">¿Cómo prefieres entrar?</h2>
+    <p id="gate-d">Esta página incluye un sonido suave y opcional de olas de mar para acompañar la lectura.</p>
+    <div class="gate-btns">
+      <button type="button" id="gate-audio" class="btn btn-cta btn-lg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>
+        Entrar con audio
       </button>
+      <button type="button" id="gate-quiet" class="btn btn-ghost btn-lg">Entrar sin audio</button>
+    </div>
+    <small class="gate-note">Podrás activarlo o silenciarlo cuando quieras con el botón de sonido.</small>
+  </div>
+</div>
+
+<header class="hdr" id="top">
+  <div class="wrap hdr-in">
+    <a class="logo" href="#top" aria-label="Aulea Viva — inicio">
+      <span class="logo-mark" aria-hidden="true">A</span>
+      <span class="logo-txt">Aulea&nbsp;<i>Viva</i></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#metodo">Método</a>
+      <a href="#informe">Informe de muestra</a>
+      <a href="#recursos">Checklist gratis</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a href="#contacto" class="btn btn-cta hdr-cta">Diagnóstico gratis</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">
+      <span class="sr">Abrir menú de navegación</span>
+      <span class="menu-ic" aria-hidden="true"></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="orb-w ow-1" data-speed="0.06" aria-hidden="true"><div class="orb orb-1"></div></div>
+  <div class="orb-w ow-2" data-speed="0.1" aria-hidden="true"><div class="orb orb-2"></div></div>
+  <canvas id="net" class="net" aria-hidden="true"></canvas>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div class="rv">
+      <p class="eyebrow eyebrow-light">Gestión y calidad de aulas virtuales</p>
+      <h1>Tu aula virtual, lista para <em class="hl">cualquier auditoría</em>.</h1>
+      <p class="lead">Acompañamos a colegios, instituciones de formación para el trabajo, academias y empresas para que sus aulas virtuales funcionen impecables y aprueben cualquier estándar de calidad. Con evidencia, no con promesas.</p>
+      <div class="hero-btns">
+        <a href="#contacto" class="btn btn-cta btn-lg">Quiero mi diagnóstico gratis</a>
+        <a href="#informe" class="btn btn-ghost btn-lg">Ver un informe de muestra</a>
+      </div>
+    </div>
+    <div class="score-wrap rv" style="--d:.15s" data-tilt>
+      <div class="halo" aria-hidden="true"></div>
+      <span class="para p-cube" data-depth="26" aria-hidden="true"><span class="f-shadow"></span><span class="float"><span class="f-cube"><i>A</i><i>✓</i><i>AA</i><i>62</i><i></i><i></i></span></span></span>
+      <span class="para p-seal" data-depth="16" aria-hidden="true"><span class="float fl-b"><span class="f-coin">AA</span></span></span>
+      <span class="para p-pill" data-depth="12" aria-hidden="true"><span class="float fl-c"><span class="pill p-ok f-pill">✓ Verde</span></span></span>
+      <span class="para p-doc" data-depth="20" aria-hidden="true"><span class="f-shadow"></span><span class="float fl-d"><span class="f-doc"><i></i><i></i><i></i></span></span></span>
+      <div class="score">
+        <p class="score-lbl"><span class="dot" aria-hidden="true"></span>Auditoría SAVA · Resultado promedio</p>
+        <p class="score-num">58–59<em> / 62</em></p>
+        <div class="meter" role="img" aria-label="Puntaje promedio: 58,5 de 62 puntos"><i style="--w:94%"></i></div>
+        <p class="score-cap">Es el puntaje que obtienen los instructores que acompañamos. Antes de trabajar juntos, el promedio rondaba 48.</p>
+        <div class="bars">
+          <div class="bar-row"><b>Estructura del curso</b><span class="pill p-ok">✓ Verde</span></div>
+          <div class="bar-row"><b>Evaluación y rúbricas</b><span class="pill p-ok">✓ Verde</span></div>
+          <div class="bar-row"><b>Accesibilidad</b><span class="pill p-wa">▲ Amarillo</span></div>
+          <div class="bar-row"><b>Seguimiento al aprendiz</b><span class="pill p-ok">✓ Verde</span></div>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <!-- ============================================
-       SCRIPTS
-       ============================================ -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="script.js"></script>
+<!-- ============ CREDENCIALES ============ -->
+<div class="proof">
+  <div class="wrap proof-in">
+    <span><b>Moodle Academy</b> · Teaching &amp; Admin Basics</span>
+    <span><b>Google Certified Educator</b> · Nivel 1 y 2</span>
+    <span><b>WCAG 2.2 AA</b> · esta web cumple el estándar que auditamos</span>
+    <span><b>+40 instructores</b> acompañados</span>
+  </div>
+</div>
+
+<!-- ============ SERVICIOS ============ -->
+<section class="sec" id="servicios">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Servicios</p>
+      <h2>Todo lo que tu aula virtual necesita</h2>
+      <p>Para colegios, instituciones de formación para el trabajo, academias y empresas. Cada servicio se arma a la medida: después del diagnóstico gratis te enviamos la propuesta.</p>
+    </div>
+    <div class="cards">
+      <span class="sv-float sv-1" aria-hidden="true"><span class="float"><span class="f-gem"></span></span></span>
+      <span class="sv-float sv-2" aria-hidden="true"><span class="float fl-b"><span class="f-gem f-gem-t"></span></span></span>
+
+      <div class="card card-feat rv">
+        <span class="flag">El más solicitado</span>
+        <div class="card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg>
+        </div>
+        <p class="card-tag">Servicio insignia</p>
+        <h3>Seguimiento académico virtual</h3>
+        <p>Revisamos cómo cada docente o instructor trabaja en el aula y enviamos informes a coordinación o a su jefe directo.</p>
+        <ul>
+          <li>Publicación, retroalimentación y calificación a tiempo</li>
+          <li>Alertas de estudiantes y aprendices en riesgo</li>
+          <li>Informe semáforo periódico por docente</li>
+          <li>Plan de mejora para cada docente</li>
+        </ul>
+        <a href="#contacto" class="btn btn-cta">Quiero este seguimiento</a>
+      </div>
+
+      <div class="card rv" style="--d:0.12s">
+        <div class="card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/><path d="m8.5 11 1.8 1.8 3.4-3.4"/></svg>
+        </div>
+        <p class="card-tag">Calidad</p>
+        <h3>Auditoría de calidad del aula</h3>
+        <p>Revisamos tus aulas contra los criterios de calidad y entregamos un informe con semáforo y un plan de corrección.</p>
+        <ul>
+          <li>Informe en 48 horas</li>
+          <li>Semáforo por criterio</li>
+          <li>Plan de corrección priorizado</li>
+          <li>30 minutos de explicación en vivo</li>
+        </ul>
+        <a href="#contacto" class="btn btn-cta">Pedir una auditoría</a>
+      </div>
+
+      <div class="card rv" style="--d:0.24s">
+        <div class="card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9 12 4 2 9l10 5 10-5z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/></svg>
+        </div>
+        <p class="card-tag">Formación</p>
+        <h3>Capacitación docente</h3>
+        <p>Talleres prácticos para docentes, instructores y formadores internos, presenciales o virtuales.</p>
+        <ul>
+          <li>Uso pedagógico de tu plataforma</li>
+          <li>Evaluación por competencias y rúbricas</li>
+          <li>IA en el aula, con criterio</li>
+          <li>A la medida de tu jornada pedagógica</li>
+        </ul>
+        <a href="#contacto" class="btn btn-cta">Cotizar una capacitación</a>
+      </div>
+
+      <div class="card rv">
+        <div class="card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 20c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2c2.6-.3 4.6 1.3 5 4.3"/></svg>
+        </div>
+        <p class="card-tag">Equipo</p>
+        <h3>Docentes e instructores de apoyo</h3>
+        <p>Un equipo de distintas especialidades para reforzar tu planta cuando lo necesites.</p>
+        <ul>
+          <li>Tutores virtuales que responden y califican</li>
+          <li>Grupos adicionales y reemplazos</li>
+          <li>Instructores para programas técnicos</li>
+          <li>Coordinados e informados por nosotros</li>
+        </ul>
+        <a href="#contacto" class="btn btn-cta">Solicitar docentes</a>
+      </div>
+
+      <div class="card rv" style="--d:0.12s">
+        <div class="card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></svg>
+        </div>
+        <p class="card-tag">Contenidos</p>
+        <h3>Creación de contenidos y cursos virtuales</h3>
+        <p>Diseñamos tus cursos y materiales listos para subir a la plataforma.</p>
+        <ul>
+          <li>Diseño instruccional por competencias</li>
+          <li>Guías, videos, actividades y evaluaciones</li>
+          <li>Documentos accesibles (WCAG)</li>
+          <li>Banco de recursos reutilizable</li>
+        </ul>
+        <a href="#contacto" class="btn btn-cta">Cotizar mis contenidos</a>
+      </div>
+
+      <div class="card rv" style="--d:0.24s">
+        <div class="card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/><path d="m9 10 2 2 4-4"/></svg>
+        </div>
+        <p class="card-tag">Plataformas</p>
+        <h3>Gestión integral de la plataforma (LMS)</h3>
+        <p>Nos encargamos de tu plataforma de principio a fin: tú enseñas, nosotros la mantenemos.</p>
+        <ul>
+          <li>Moodle, Q10, Phidias, Classroom y otras</li>
+          <li>Configuración, matrículas y copias de seguridad</li>
+          <li>Reportes para directivos</li>
+          <li>Aulas siempre listas para auditoría</li>
+        </ul>
+        <a href="#contacto" class="btn btn-cta">Hablar de mi plataforma</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÉTODO ============ -->
+<section class="sec sec-alt" id="metodo">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Método</p>
+      <h2>Cómo trabajamos</h2>
+      <p>Un método de cuatro pasos. Sabes qué pasa en cada uno y cuánto demora.</p>
+    </div>
+    <ol class="steps">
+      <li class="step rv"><span class="coin" aria-hidden="true">1</span><h3>Diagnóstico</h3><p>30 minutos, sin costo. Miramos tu aula y te contamos qué encontramos.</p></li>
+      <li class="step rv" style="--d:.1s"><span class="coin" aria-hidden="true">2</span><h3>Informe semáforo</h3><p>Cada criterio en verde, amarillo o rojo. Sin tecnicismos.</p></li>
+      <li class="step rv" style="--d:.2s"><span class="coin" aria-hidden="true">3</span><h3>Plan de corrección</h3><p>Qué arreglar primero para subir más puntos con menos esfuerzo.</p></li>
+      <li class="step rv" style="--d:.3s"><span class="coin" aria-hidden="true">4</span><h3>Acompañamiento</h3><p>Lo ejecutamos con tu equipo o por él, y te informamos el avance.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ INFORME DE MUESTRA ============ -->
+<section class="sec" id="informe">
+  <div class="wrap report">
+    <div class="rep-copy rv">
+      <p class="eyebrow">Evidencia</p>
+      <h2>Mira un informe antes de contratarnos</h2>
+      <p>Te compartimos una auditoría de muestra completa, hecha sobre un curso público. Así ves exactamente qué recibes: el criterio, el color, la razón y qué hacer.</p>
+      <p>Cada color viene siempre con su icono y su etiqueta escrita, nunca con el color solo. Esa es la diferencia entre decir que sabes de accesibilidad y demostrarlo.</p>
+      <a href="https://wa.me/573229204851?text=Hola%20Aulea%20Viva%2C%20quiero%20ver%20el%20informe%20de%20muestra" target="_blank" rel="noopener" class="btn btn-cta btn-lg" style="margin-top:12px">Pedir el informe de muestra</a>
+    </div>
+    <div class="rep-wrap rv" style="--d:.15s">
+      <span class="para p-check" aria-hidden="true"><span class="float fl-b"><span class="f-coin f-coin-ok">✓</span></span></span>
+      <div class="rep-box">
+        <div class="rep-hd"><b>Informe de auditoría · Curso modelo</b><span class="chip">Emitido en 48 h</span></div>
+        <div class="rep-row"><b>Banner e identidad del curso</b><span class="pill p-ok">✓ Verde</span></div>
+        <div class="rep-row"><b>Estructura por semanas</b><span class="pill p-ok">✓ Verde</span></div>
+        <div class="rep-row"><b>Subtítulos en los videos</b><span class="pill p-no">✖ Rojo</span></div>
+        <div class="rep-row"><b>Contraste de textos</b><span class="pill p-wa">▲ Amarillo</span></div>
+        <div class="rep-row"><b>Rúbrica publicada</b><span class="pill p-ok">✓ Verde</span></div>
+        <div class="rep-row"><b>Foro de bienvenida activo</b><span class="pill p-wa">▲ Amarillo</span></div>
+        <p class="rep-note"><strong>Prioridad 1:</strong> subtitular los 6 videos. Sube 4 puntos y es lo que más pesa en la rúbrica.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHECKLIST GRATIS ============ -->
+<section class="sec sec-alt" id="recursos">
+  <div class="wrap">
+    <div class="magnet rv">
+      <div class="noise" aria-hidden="true"></div>
+      <div>
+        <h2>La checklist con la que revisamos cada aula</h2>
+        <p>Los 10 puntos que más veces hacen perder puntos en una auditoría. Es la versión corta de nuestro método, y es gratis.</p>
+      </div>
+      <form class="form" id="chk-form" action="https://wa.me/573229204851" method="get" target="_blank">
+        <label class="sr" for="email">Tu correo electrónico</label>
+        <input type="email" id="email" name="email" placeholder="tu@correo.com" autocomplete="email" required>
+        <button type="submit" class="btn btn-cta btn-lg">Enviarme la checklist</button>
+        <small>Se abre WhatsApp con tu solicitud. Un solo envío, sin spam.</small>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="final" id="contacto">
+  <div class="halo halo-final" aria-hidden="true"></div>
+  <div class="wrap rv">
+    <p class="eyebrow">Diagnóstico gratis</p>
+    <h2>¿Empezamos por tu aula?</h2>
+    <p>Treinta minutos, sin costo y sin compromiso. Te decimos qué está bien, qué no, y si de verdad necesitas contratarnos.</p>
+    <a href="https://wa.me/573229204851?text=Hola%20Aulea%20Viva%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20gratis" target="_blank" rel="noopener" class="btn btn-cta btn-lg">Agendar mi diagnóstico gratis</a>
+    <p class="final-tel">O llámanos al <a href="tel:+573229204851">322 920 4851</a></p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ftr">
+  <div class="wrap ftr-grid">
+    <div>
+      <a class="logo" href="#top" aria-label="Aulea Viva — inicio">
+        <span class="logo-mark" aria-hidden="true">A</span>
+        <span class="logo-txt">Aulea&nbsp;<i>Viva</i></span>
+      </a>
+      <p class="ftr-desc">Gestión y calidad de aulas virtuales para colegios, instituciones de formación para el trabajo, academias y empresas en Colombia y Latinoamérica.</p>
+      <div class="gegh">
+        <span class="gegh-mark" aria-hidden="true">GEGH</span>
+        <div>
+          <span class="gegh-k">Una marca de</span>
+          <b>Grupo Empresarial Guerrero Herrera S.A.S.</b>
+          <span class="gegh-l">Av. 89 No. 21-50, barrio Diamante II</span>
+          <span class="gegh-l">Tel. y WhatsApp: <a href="tel:+573229204851">322 920 4851</a></span>
+        </div>
+      </div>
+    </div>
+    <nav aria-label="Enlaces del sitio">
+      <p class="ftr-t">Secciones</p>
+      <div class="ftr-nav">
+        <a href="#servicios">Servicios</a>
+        <a href="#metodo">Método</a>
+        <a href="#informe">Informe de muestra</a>
+        <a href="#recursos">Checklist gratis</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </nav>
+    <div>
+      <p class="ftr-t">Compromiso</p>
+      <div class="stamp">
+        <span class="seal" aria-hidden="true">AA</span>
+        <div>
+          <b>WCAG 2.2 · Nivel AA</b>
+          <span class="stamp-note">Esta web cumple el estándar que auditamos: contraste verificado, foco visible y movimiento reducido respetado.</span>
+          <span class="stamp-by">Compromiso de Grupo Empresarial Guerrero Herrera S.A.S.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap ftr-bottom">
+    <span>© <span id="y">2026</span> Aulea Viva · Todos los derechos reservados</span>
+    <span>Aulea Viva es una marca de <b>Grupo Empresarial Guerrero Herrera S.A.S.</b></span>
+  </div>
+</footer>
+
+<!-- ============ BOTONES DE CONTACTO ============ -->
+<div class="fabs">
+  <a class="fab fab-wa" href="https://wa.me/573229204851?text=Hola%20Aulea%20Viva%2C%20me%20interesa%20conocer%20sus%20servicios" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24M8.53 7.33c-.16 0-.43.06-.66.31-.22.25-.87.86-.87 2.07 0 1.22.89 2.39 1 2.56.14.17 1.76 2.67 4.25 3.73.59.27 1.05.42 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.14-1.18s-.22-.16-.48-.27c-.25-.14-1.47-.74-1.69-.82-.23-.08-.37-.12-.56.12-.16.25-.64.81-.78.97-.15.17-.29.19-.53.07-.26-.13-1.06-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.12-.24-.01-.39.11-.5.11-.11.27-.29.37-.44.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.11-.56-1.35-.77-1.84-.2-.48-.4-.42-.56-.43-.14 0-.3-.01-.47-.01z"/></svg>
+  </a>
+  <!-- TODO: si usas un chatbot (Tidio, Crisp, Chatbase…), reemplaza este enlace por el script de su widget -->
+  <a class="fab fab-chat" href="#contacto" aria-label="Abrir chat">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.7-.33-3.86-.92L3 21l1.98-4.4A8.5 8.5 0 1 1 21 11.5z"/><circle cx="8.6" cy="11.5" r=".9" fill="currentColor" stroke="none"/><circle cx="12.5" cy="11.5" r=".9" fill="currentColor" stroke="none"/><circle cx="16.4" cy="11.5" r=".9" fill="currentColor" stroke="none"/></svg>
+  </a>
+</div>
+
+<button type="button" class="snd" id="snd" aria-pressed="false" aria-label="Activar ambiente sonoro">
+  <svg class="ic-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 6a8.5 8.5 0 0 1 0 12"/></svg>
+  <svg class="ic-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16.5 9.5 5 5"/><path d="m21.5 9.5-5 5"/></svg>
+</button>
+
+<script>
+(function(){
+  'use strict';
+
+  /* Checklist: abre WhatsApp con el correo escrito */
+  var chk = document.getElementById('chk-form');
+  if (chk) {
+    chk.addEventListener('submit', function(e){
+      e.preventDefault();
+      var em = chk.querySelector('input[type=email]');
+      if (!em.checkValidity()) { em.reportValidity(); return; }
+      var txt = 'Hola Aulea Viva, quiero recibir la checklist de calidad de aulas virtuales en mi correo: ' + em.value;
+      window.open('https://wa.me/573229204851?text=' + encodeURIComponent(txt), '_blank', 'noopener');
+    });
+  }
+
+  var motionOk = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+  var fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  /* Sombra del header + parallax de orbes al hacer scroll */
+  var hdr = document.querySelector('.hdr');
+  var orbWs = document.querySelectorAll('.orb-w');
+  var ticking = false;
+  function onScroll(){
+    var sy = window.scrollY;
+    hdr.classList.toggle('scrolled', sy > 8);
+    if (motionOk) {
+      orbWs.forEach(function(w){
+        var sp = parseFloat(w.getAttribute('data-speed')) || 0.05;
+        w.style.transform = 'translate3d(0,' + (sy * sp).toFixed(1) + 'px,0)';
+      });
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if (!ticking) { ticking = true; window.requestAnimationFrame(onScroll); }
+  }, {passive:true});
+
+  /* Menú móvil */
+  var btn = document.querySelector('.menu-btn');
+  var nav = document.getElementById('nav');
+  if (btn && nav) {
+    btn.addEventListener('click', function(){
+      var open = nav.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function(e){
+      if (e.target.tagName === 'A') {
+        nav.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  /* Aparición al hacer scroll (se orquesta al entrar) */
+  var revealStarted = false;
+  function initReveal(){
+    if (revealStarted) return;
+    revealStarted = true;
+    var revealed = document.querySelectorAll('.rv');
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if (en.isIntersecting) {
+            en.target.classList.add('in');
+            io.unobserve(en.target);
+          }
+        });
+      }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+      revealed.forEach(function(el){ io.observe(el); });
+    } else {
+      revealed.forEach(function(el){ el.classList.add('in'); });
+    }
+  }
+
+  /* Tilt 3D de la tarjeta de puntaje (solo puntero fino y sin movimiento reducido) */
+  var wrapEl = document.querySelector('[data-tilt]');
+  var cardEl = wrapEl && wrapEl.querySelector('.score');
+  if (cardEl && fine && motionOk) {
+    wrapEl.addEventListener('pointermove', function(e){
+      var r = wrapEl.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width;
+      var y = (e.clientY - r.top) / r.height;
+      var rx = (0.5 - y) * 8;
+      var ry = (x - 0.5) * 10;
+      cardEl.style.transform = 'rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg)';
+      cardEl.style.setProperty('--gx', (x * 100).toFixed(1) + '%');
+      cardEl.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
+    });
+    wrapEl.addEventListener('pointerleave', function(){
+      cardEl.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+  }
+
+  /* Parallax 3D con el mouse: cada objeto flotante del hero tiene su profundidad */
+  var heroEl = document.querySelector('.hero');
+  var paras = heroEl ? heroEl.querySelectorAll('.para') : [];
+  if (heroEl && paras.length && fine && motionOk) {
+    heroEl.addEventListener('pointermove', function(e){
+      var r = heroEl.getBoundingClientRect();
+      var nx = (e.clientX - r.left) / r.width - 0.5;
+      var ny = (e.clientY - r.top) / r.height - 0.5;
+      paras.forEach(function(p){
+        var d = parseFloat(p.getAttribute('data-depth')) || 12;
+        p.style.transform = 'translate3d(' + (nx * d).toFixed(1) + 'px,' + (ny * d).toFixed(1) + 'px,0)';
+      });
+    });
+    heroEl.addEventListener('pointerleave', function(){
+      paras.forEach(function(p){ p.style.transform = 'translate3d(0,0,0)'; });
+    });
+  }
+
+  /* ===== Constelación interactiva + esfera 3D (canvas del hero) =====
+     Partículas que se conectan entre sí y con el cursor al rozar la página,
+     y una esfera de puntos girando detrás de la tarjeta de puntaje. ===== */
+  var netC = document.getElementById('net');
+  var netAnchor = document.querySelector('.score-wrap');
+  if (netC && heroEl && netAnchor && netC.getContext) {
+    var nctx = netC.getContext('2d');
+    var NW = 0, NH = 0, npts = [], nsph = [], ncx = 0, ncy = 0, nrad = 0;
+    var nrotY = 0, nmx = -9999, nmy = -9999, nvis = true, nrun = true;
+    var C_TEAL = '155,220,226', C_WHITE = '236,248,249', C_EMBER = '234,110,52';
+
+    var netInit = function(){
+      var n = Math.round(NW * NH / 16000);
+      if (n > 110) { n = 110; }
+      if (n < 36) { n = 36; }
+      npts = [];
+      for (var i = 0; i < n; i++) {
+        npts.push({
+          x: Math.random() * NW, y: Math.random() * NH,
+          vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
+          s: Math.random() * 1.7 + 0.8,
+          q: Math.random() < 0.3,
+          c: Math.random() < 0.08 ? C_EMBER : (Math.random() < 0.5 ? C_TEAL : C_WHITE)
+        });
+      }
+      var m = NW < 700 ? 90 : 130;
+      nsph = [];
+      for (var k = 0; k < m; k++) {
+        var t = (k + 0.5) / m;
+        var ph = Math.acos(1 - 2 * t);
+        var th = Math.PI * (1 + Math.sqrt(5)) * k;
+        nsph.push({ x: Math.sin(ph) * Math.cos(th), y: Math.cos(ph), z: Math.sin(ph) * Math.sin(th) });
+      }
+    };
+    var netSize = function(){
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var r = heroEl.getBoundingClientRect();
+      NW = r.width; NH = r.height;
+      netC.width = NW * dpr; netC.height = NH * dpr;
+      netC.style.width = NW + 'px'; netC.style.height = NH + 'px';
+      nctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var a = netAnchor.getBoundingClientRect();
+      ncx = a.left - r.left + a.width / 2;
+      ncy = a.top - r.top + a.height / 2;
+      nrad = Math.min(a.width * 0.62, 300);
+      netInit();
+    };
+    var netDraw = function(){
+      nctx.clearRect(0, 0, NW, NH);
+      var i, j, p, q, dx, dy, d;
+      for (i = 0; i < npts.length; i++) {
+        p = npts[i];
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < -20) { p.x = NW + 20; } else if (p.x > NW + 20) { p.x = -20; }
+        if (p.y < -20) { p.y = NH + 20; } else if (p.y > NH + 20) { p.y = -20; }
+      }
+      nctx.lineWidth = 1;
+      for (i = 0; i < npts.length; i++) {
+        p = npts[i];
+        for (j = i + 1; j < npts.length; j++) {
+          q = npts[j];
+          dx = p.x - q.x; dy = p.y - q.y; d = dx * dx + dy * dy;
+          if (d < 12100) {
+            nctx.strokeStyle = 'rgba(' + C_TEAL + ',' + (0.16 * (1 - d / 12100)).toFixed(3) + ')';
+            nctx.beginPath(); nctx.moveTo(p.x, p.y); nctx.lineTo(q.x, q.y); nctx.stroke();
+          }
+        }
+        /* conexión con el cursor + leve repulsión al rozar */
+        dx = p.x - nmx; dy = p.y - nmy; d = dx * dx + dy * dy;
+        if (d < 25600) {
+          nctx.strokeStyle = 'rgba(' + C_WHITE + ',' + (0.4 * (1 - d / 25600)).toFixed(3) + ')';
+          nctx.beginPath(); nctx.moveTo(p.x, p.y); nctx.lineTo(nmx, nmy); nctx.stroke();
+          if (d < 3600) { p.x += dx * 0.02; p.y += dy * 0.02; }
+        }
+        nctx.fillStyle = 'rgba(' + p.c + ',0.85)';
+        if (p.q) { nctx.fillRect(p.x - p.s, p.y - p.s, p.s * 2, p.s * 2); }
+        else { nctx.beginPath(); nctx.arc(p.x, p.y, p.s, 0, 6.2832); nctx.fill(); }
+      }
+      /* esfera de puntos girando lentamente */
+      nrotY += 0.0035;
+      var sy = Math.sin(nrotY), cy2 = Math.cos(nrotY);
+      var sx = Math.sin(-0.35), cx2 = Math.cos(-0.35);
+      var proj = [], f = 520, v, x1, z1, y1, z2, sc;
+      for (i = 0; i < nsph.length; i++) {
+        v = nsph[i];
+        x1 = v.x * cy2 - v.z * sy;
+        z1 = v.x * sy + v.z * cy2;
+        y1 = v.y * cx2 - z1 * sx;
+        z2 = v.y * sx + z1 * cx2;
+        sc = f / (f + z2 * nrad);
+        proj.push({ x: ncx + x1 * nrad * sc, y: ncy + y1 * nrad * sc, z: z2, sc: sc });
+      }
+      var lim = (nrad * 0.42) * (nrad * 0.42), a2, b2, w;
+      for (i = 0; i < proj.length; i++) {
+        for (j = i + 1; j < proj.length; j++) {
+          a2 = proj[i]; b2 = proj[j];
+          dx = a2.x - b2.x; dy = a2.y - b2.y; d = dx * dx + dy * dy;
+          if (d < lim) {
+            w = (2 - (a2.z + b2.z)) / 4;
+            nctx.strokeStyle = 'rgba(' + C_TEAL + ',' + (0.16 * (1 - d / lim) * w).toFixed(3) + ')';
+            nctx.beginPath(); nctx.moveTo(a2.x, a2.y); nctx.lineTo(b2.x, b2.y); nctx.stroke();
+          }
+        }
+      }
+      for (i = 0; i < proj.length; i++) {
+        a2 = proj[i];
+        w = (1 - a2.z) / 2;
+        nctx.fillStyle = 'rgba(' + (i % 9 === 0 ? C_EMBER : C_TEAL) + ',' + (0.15 + 0.55 * w).toFixed(3) + ')';
+        nctx.beginPath(); nctx.arc(a2.x, a2.y, 1.1 + 1.6 * w * a2.sc, 0, 6.2832); nctx.fill();
+      }
+    };
+    heroEl.addEventListener('pointermove', function(e){
+      var r = heroEl.getBoundingClientRect();
+      nmx = e.clientX - r.left; nmy = e.clientY - r.top;
+    });
+    heroEl.addEventListener('pointerleave', function(){ nmx = -9999; nmy = -9999; });
+    var rsT = null;
+    window.addEventListener('resize', function(){
+      if (rsT) { window.clearTimeout(rsT); }
+      rsT = window.setTimeout(netSize, 150);
+    });
+    window.addEventListener('load', netSize);
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(en){ nvis = en[0].isIntersecting; }).observe(heroEl);
+    }
+    document.addEventListener('visibilitychange', function(){ nrun = !document.hidden; });
+    netSize();
+    if (motionOk) {
+      var netLoop = function(){
+        if (nvis && nrun) { netDraw(); }
+        window.requestAnimationFrame(netLoop);
+      };
+      netLoop();
+    } else {
+      netDraw();
+    }
+  }
+
+  /* ===== Ambiente sonoro (generado en el navegador, sin archivos externos) =====
+     Solo olas de mar: capa grave de fondo + espuma brillante,
+     con un vaivén lento y desigual para que ninguna ola suene igual. ===== */
+  var ambient = {
+    ctx: null, master: null, playing: false,
+    start: function(){
+      if (this.playing) return;
+      if (!this.ctx) {
+        var AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return;
+        this.ctx = new AC();
+        this.build();
+      }
+      if (this.ctx.state === 'suspended') { this.ctx.resume(); }
+      var t = this.ctx.currentTime;
+      this.master.gain.cancelScheduledValues(t);
+      this.master.gain.setValueAtTime(this.master.gain.value, t);
+      this.master.gain.linearRampToValueAtTime(0.4, t + 2.2);
+      this.playing = true;
+    },
+    stop: function(){
+      if (!this.ctx || !this.playing) return;
+      var t = this.ctx.currentTime;
+      this.master.gain.cancelScheduledValues(t);
+      this.master.gain.setValueAtTime(this.master.gain.value, t);
+      this.master.gain.linearRampToValueAtTime(0, t + 1.4);
+      this.playing = false;
+    },
+    build: function(){
+      var ctx = this.ctx;
+      this.master = ctx.createGain();
+      this.master.gain.value = 0;
+      this.master.connect(ctx.destination);
+      /* fuente de ruido en bucle (4 s) */
+      var len = ctx.sampleRate * 4;
+      var buf = ctx.createBuffer(1, len, ctx.sampleRate);
+      var d = buf.getChannelData(0);
+      for (var i = 0; i < len; i++) { d[i] = Math.random() * 2 - 1; }
+      /* capa 1: mar de fondo, grave y envolvente */
+      var deep = ctx.createBufferSource();
+      deep.buffer = buf; deep.loop = true;
+      var lp = ctx.createBiquadFilter();
+      lp.type = 'lowpass'; lp.frequency.value = 420; lp.Q.value = 0.5;
+      var dg = ctx.createGain(); dg.gain.value = 0.055;
+      deep.connect(lp); lp.connect(dg); dg.connect(this.master);
+      /* capa 2: espuma, más brillante, que sube con cada ola */
+      var foam = ctx.createBufferSource();
+      foam.buffer = buf; foam.loop = true;
+      foam.playbackRate.value = 0.9; /* desincroniza el bucle de la capa 1 */
+      var bp = ctx.createBiquadFilter();
+      bp.type = 'bandpass'; bp.frequency.value = 950; bp.Q.value = 0.7;
+      var fg = ctx.createGain(); fg.gain.value = 0.009;
+      foam.connect(bp); bp.connect(fg); fg.connect(this.master);
+      /* vaivén: dos LFOs lentos y desiguales = olas orgánicas, nunca idénticas */
+      var lfo1 = ctx.createOscillator(); lfo1.frequency.value = 0.06;
+      var l1g = ctx.createGain(); l1g.gain.value = 0.028;
+      lfo1.connect(l1g); l1g.connect(dg.gain);
+      var lfo2 = ctx.createOscillator(); lfo2.frequency.value = 0.091;
+      var l2g = ctx.createGain(); l2g.gain.value = 0.018;
+      lfo2.connect(l2g); l2g.connect(dg.gain);
+      /* la espuma respira con la ola principal */
+      var l3g = ctx.createGain(); l3g.gain.value = 0.006;
+      lfo1.connect(l3g); l3g.connect(fg.gain);
+      /* el filtro se abre un poco en la cresta: la ola suena más brillante al romper */
+      var l4g = ctx.createGain(); l4g.gain.value = 140;
+      lfo1.connect(l4g); l4g.connect(lp.frequency);
+      deep.start(); foam.start(); lfo1.start(); lfo2.start();
+    }
+  };
+
+  /* ===== Portada de entrada + botón de sonido ===== */
+  var gate = document.getElementById('gate');
+  var sndBtn = document.getElementById('snd');
+  function setSnd(on){
+    if (!sndBtn) return;
+    sndBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    sndBtn.setAttribute('aria-label', on ? 'Silenciar ambiente sonoro' : 'Activar ambiente sonoro');
+  }
+  if (sndBtn) {
+    sndBtn.addEventListener('click', function(){
+      if (sndBtn.getAttribute('aria-pressed') === 'true') { ambient.stop(); setSnd(false); }
+      else { ambient.start(); setSnd(true); }
+    });
+  }
+  if (gate) {
+    document.body.classList.add('gated');
+    var enterBtn = document.getElementById('gate-audio');
+    var quietBtn = document.getElementById('gate-quiet');
+    var gateClosed = false;
+    var closeGate = function(withAudio){
+      if (gateClosed) return;
+      gateClosed = true;
+      if (withAudio) { ambient.start(); setSnd(true); } else { setSnd(false); }
+      gate.classList.add('hide');
+      gate.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('gated');
+      initReveal();
+      window.setTimeout(function(){
+        if (gate.parentNode) { gate.parentNode.removeChild(gate); }
+      }, 800);
+    };
+    enterBtn.addEventListener('click', function(){ closeGate(true); });
+    quietBtn.addEventListener('click', function(){ closeGate(false); });
+    gate.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') { closeGate(false); return; }
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey && document.activeElement === enterBtn) { e.preventDefault(); quietBtn.focus(); }
+      else if (!e.shiftKey && document.activeElement === quietBtn) { e.preventDefault(); enterBtn.focus(); }
+    });
+    window.setTimeout(function(){ enterBtn.focus(); }, 150);
+  } else {
+    initReveal();
+  }
+
+  /* Año en el pie */
+  var y = document.getElementById('y');
+  if (y) { y.textContent = new Date().getFullYear(); }
+})();
+</script>
+
 </body>
 </html>
