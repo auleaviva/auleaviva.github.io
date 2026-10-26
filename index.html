@@ -7,6 +7,8 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' 'sha256-E3PHheDuS6Z2v0d1DKLWlWJ3atEYfbJ4Vi/lOcn9WEw=' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action https://wa.me; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aulea Viva — Gestión y calidad de aulas virtuales</title>
 <meta name="description" content="Acompañamos a colegios, instituciones de formación para el trabajo, academias y empresas para que sus aulas virtuales funcionen impecables: seguimiento a docentes con informes, auditorías de calidad, capacitación, docentes de apoyo, creación de contenidos y gestión integral de la plataforma.">
@@ -685,7 +687,7 @@ body.gated{overflow:hidden}
       </div>
       <form class="form" id="chk-form" action="https://wa.me/573025280632" method="get" target="_blank">
         <label class="sr" for="email">Tu correo electrónico</label>
-        <input type="email" id="email" name="email" placeholder="tu@correo.com" autocomplete="email" required>
+        <input type="email" id="email" name="email" placeholder="tu@correo.com" autocomplete="email" required maxlength="254" spellcheck="false">
         <button type="submit" class="btn btn-cta btn-lg">Enviarme la checklist</button>
         <small>Se abre WhatsApp con tu solicitud. Un solo envío, sin spam.</small>
       </form>
